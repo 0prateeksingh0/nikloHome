@@ -42,7 +42,7 @@ const Header: React.FC = () => {
     }`}>
       {/* Centered Logo at Top */}
       <div className="flex justify-center py-2 md:py-4">
-        <img src="/logo.png" alt="GRAND SKOPJE" className="h-12 md:h-16" />
+        <img src="/logo.png" alt="GRAND SKOPJE" className="h-16 md:h-18" />
       </div>
       
       {/* Separator Line */}
