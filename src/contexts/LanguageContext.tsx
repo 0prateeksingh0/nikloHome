@@ -1,4 +1,5 @@
-import React, { createContext, useContext, useState, ReactNode } from 'react';
+import React, { createContext, useContext, useState } from 'react';
+import type { ReactNode } from 'react';
 
 interface LanguageContextType {
   language: string;
@@ -50,7 +51,7 @@ const translations = {
     'footer.home': 'HOME',
     'footer.buildings': 'BUILDINGS',
     'footer.about': 'ABOUT US',
-    'footer.contact': 'CONTACT',
+    'footer.contact_link': 'CONTACT',
     'footer.privacy': 'PRIVACY POLICY'
   },
   tr: {
@@ -93,7 +94,7 @@ const translations = {
     'footer.home': 'ANA SAYFA',
     'footer.buildings': 'BİNALAR',
     'footer.about': 'HAKKIMIZDA',
-    'footer.contact': 'İLETİŞİM',
+    'footer.contact_link': 'İLETİŞİM',
     'footer.privacy': 'GİZLİLİK POLİTİKASI'
   },
   el: {
@@ -136,7 +137,7 @@ const translations = {
     'footer.home': 'ΑΡΧΙΚΗ',
     'footer.buildings': 'ΚΤΙΡΙΑ',
     'footer.about': 'ΣΧΕΤΙΚΑ ΜΕ ΕΜΑΣ',
-    'footer.contact': 'ΕΠΙΚΟΙΝΩΝΙΑ',
+    'footer.contact_link': 'ΕΠΙΚΟΙΝΩΝΙΑ',
     'footer.privacy': 'ΠΟΛΙΤΙΚΗ ΑΠΟΡΡΗΤΟΥ'
   }
 };
@@ -145,7 +146,8 @@ export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }
   const [language, setLanguage] = useState('en');
 
   const t = (key: string): string => {
-    return translations[language as keyof typeof translations]?.[key] || key;
+    const currentTranslations = translations[language as keyof typeof translations];
+    return currentTranslations?.[key as keyof typeof currentTranslations] || key;
   };
 
   return (
