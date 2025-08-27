@@ -10,8 +10,8 @@ const Hero: React.FC = () => {
       image: "/hero1.jpeg"
     },
     {
-      title: "GRAND RIVER",
-      subtitle: "Modern living by the river",
+      title: "GRAND THASSOS",
+      subtitle: "Modern living by the thassos",
       image: "/hero2.jpeg"
     }
   ];
@@ -40,7 +40,7 @@ const Hero: React.FC = () => {
         <img 
           src={slides[currentSlide].image} 
           alt={`${slides[currentSlide].title} - ${slides[currentSlide].subtitle}`} 
-          className="w-full h-full object-cover transition-opacity duration-1000"
+          className="w-full h-full object-cover object-center transition-opacity duration-1000"
         />
         {/* Overlay */}
         <div className="absolute inset-0 bg-black/40"></div>
