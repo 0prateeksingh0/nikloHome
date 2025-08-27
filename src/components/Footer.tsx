@@ -1,6 +1,9 @@
 import React from 'react';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const Footer: React.FC = () => {
+  const { t } = useLanguage();
+
   return (
     <footer className="bg-[#253847] text-white">
       {/* Main Footer Content */}
@@ -9,43 +12,39 @@ const Footer: React.FC = () => {
           {/* Left Column - Logo and Company Info */}
           <div>
             <div className="flex items-center mb-4">
-              <img src="/logo.png" alt="GRAND SKOPJE" className="h-12 mr-3" />
+              <img src="/logo.png" alt="GRAND SKOPJE" className="h-16 mr-6" />
             </div>
-            <p className="text-[#C0C0C0] text-sm mb-2">A project developed by</p>
-            <div className="text-[#C0C0C0] font-bold">
-              <div className="text-lg">MGF</div>
-              <div className="text-sm">COMPANY</div>
-            </div>
+           
           </div>
 
           {/* Middle Column - Contact */}
           <div>
-            <h3 className="text-[#af8c69] font-bold mb-4">Contact:</h3>
+            <h3 className="text-[#af8c69] font-bold mb-4">{t('footer.contact')}</h3>
             <div className="space-y-3">
               <div className="flex items-center space-x-2">
                 <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
                 </svg>
-                <span className="text-[#C0C0C0]">info@grandskopje.mk</span>
+                <a href="mailto:nilkohome@gmail.com" className="text-[#C0C0C0] hover:text-[#af8c69] transition-colors">nilkohome@gmail.com</a>
               </div>
               <div className="flex items-center space-x-2">
                 <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
                 </svg>
-                <span className="text-[#C0C0C0]">+389 70 355351</span>
+                <a href="tel:02842145566" className="text-[#C0C0C0] hover:text-[#af8c69] transition-colors">0284 214 55 66</a>
               </div>
               <div className="flex items-center space-x-2">
                 <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
                 </svg>
-                <span className="text-[#C0C0C0]">+389 70 233055</span>
+                <a href="tel:05327086515" className="text-[#C0C0C0] hover:text-[#af8c69] transition-colors">0532 708 65 15</a>
               </div>
             </div>
           </div>
 
           {/* Right Column - Social & Subscribe */}
           <div>
-            <h3 className="text-[#af8c69] font-bold mb-4">Follow us:</h3>
+            <h3 className="text-[#af8c69] font-bold mb-4">{t('footer.follow')}</h3>
             <div className="flex space-x-3 mb-6">
               <a href="#" className="w-8 h-8 bg-white rounded-full flex items-center justify-center text-[#253847] hover:bg-[#af8c69] hover:text-white transition-colors">
                 <span className="font-bold text-sm">f</span>
@@ -60,15 +59,15 @@ const Footer: React.FC = () => {
               </a>
             </div>
             
-            <h3 className="text-[#af8c69] font-bold mb-4">Subscribe:</h3>
+            <h3 className="text-[#af8c69] font-bold mb-4">{t('footer.subscribe')}</h3>
             <div className="space-y-2">
               <input 
                 type="email" 
-                placeholder="Your Email (required)"
+                placeholder={t('footer.email_placeholder')}
                 className="w-full px-3 py-2 bg-white text-gray-800 rounded placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#af8c69]"
               />
               <button className="w-full bg-[#253847] text-white py-2 px-4 rounded border border-white hover:bg-[#af8c69] transition-colors">
-                SIGN UP
+                {t('footer.signup')}
               </button>
             </div>
           </div>
@@ -80,14 +79,14 @@ const Footer: React.FC = () => {
         <div className="container mx-auto px-4 py-4">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="flex flex-wrap justify-center md:justify-start space-x-6 mb-4 md:mb-0">
-              <a href="#" className="text-[#af8c69] hover:text-white transition-colors">HOME</a>
-              <a href="#" className="text-[#af8c69] hover:text-white transition-colors">BUILDINGS</a>
-              <a href="#" className="text-[#af8c69] hover:text-white transition-colors">ABOUT US</a>
-              <a href="#" className="text-[#af8c69] hover:text-white transition-colors">CONTACT</a>
-              <a href="#" className="text-[#af8c69] hover:text-white transition-colors">PRIVACY POLICY</a>
+              <a href="#" className="text-[#af8c69] hover:text-white transition-colors">{t('footer.home')}</a>
+              <a href="#" className="text-[#af8c69] hover:text-white transition-colors">{t('footer.buildings')}</a>
+              <a href="#" className="text-[#af8c69] hover:text-white transition-colors">{t('footer.about')}</a>
+              <a href="#" className="text-[#af8c69] hover:text-white transition-colors">{t('footer.contact')}</a>
+              <a href="#" className="text-[#af8c69] hover:text-white transition-colors">{t('footer.privacy')}</a>
             </div>
             <div className="text-white/80 text-sm">
-              Copyright 2025 © GRAND - SKOPJE
+              {t('footer.copyright')}
             </div>
           </div>
         </div>

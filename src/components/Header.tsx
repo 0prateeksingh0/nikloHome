@@ -1,18 +1,40 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const Header: React.FC = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isLanguageDropdownOpen, setIsLanguageDropdownOpen] = useState(false);
+  const { language, setLanguage, t } = useLanguage();
+  const languageDropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrollTop = window.scrollY;
-      setIsScrolled(scrollTop > 50);
+      setIsScrolled(window.scrollY > 50);
+    };
+
+    const handleClickOutside = (event: MouseEvent) => {
+      if (languageDropdownRef.current && !languageDropdownRef.current.contains(event.target as Node)) {
+        setIsLanguageDropdownOpen(false);
+      }
     };
 
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    document.addEventListener('mousedown', handleClickOutside);
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
   }, []);
+
+  const languages = [
+    { code: 'en', name: 'English', flag: '🇺🇸' },
+    { code: 'tr', name: 'Türkçe', flag: '🇹🇷' },
+    { code: 'el', name: 'Ελληνικά', flag: '🇬🇷' }
+  ];
+
+  const currentLanguage = languages.find(lang => lang.code === language);
 
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
@@ -22,12 +44,12 @@ const Header: React.FC = () => {
       <div className="flex justify-center py-4">
         <img src="/logo.png" alt="GRAND SKOPJE" className="h-16" />
       </div>
-
+      
       {/* Separator Line */}
       <div className={`h-px bg-gray-300 mx-auto w-full max-w-6xl transition-all duration-300 ${
         isScrolled ? 'bg-gray-300' : 'bg-white/30'
       }`}></div>
-
+      
       {/* Main Navigation Bar - Single Line */}
       <div className={`border-b transition-all duration-300 ${
         isScrolled ? 'border-gray-200' : 'border-white/20'
@@ -41,16 +63,20 @@ const Header: React.FC = () => {
               <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 .12-.03.24-.06.36l-2.2 2.2z" />
               </svg>
-              <span>+389 70 355351 | +389 70 233055</span>
+              <span>
+                <a href="tel:02842145566" className="hover:text-orange-400 transition-colors">0284 214 55 66</a>
+                <span className="mx-2">|</span>
+                <a href="tel:05327086515" className="hover:text-orange-400 transition-colors">0532 708 65 15</a>
+              </span>
             </div>
-
+            
             {/* Center - Navigation Links */}
             <div className="hidden lg:flex items-center space-x-8">
               <div className="relative group">
                 <button className={`flex items-center text-lg font-medium transition-all duration-300 ${
                   isScrolled ? 'text-gray-800 hover:text-orange-500' : 'text-white hover:text-orange-400'
                 }`}>
-                  BUILDINGS
+                  {t('nav.buildings')}
                   <svg className="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
                   </svg>
@@ -63,19 +89,16 @@ const Header: React.FC = () => {
               </div>
               <a href="#" className={`text-lg font-medium transition-all duration-300 ${
                 isScrolled ? 'text-gray-800 hover:text-orange-500' : 'text-white hover:text-orange-400'
-              }`}>3D MAP</a>
+              }`}>{t('nav.3dmap')}</a>
               <a href="#" className={`text-lg font-medium transition-all duration-300 ${
                 isScrolled ? 'text-gray-800 hover:text-orange-500' : 'text-white hover:text-orange-400'
-              }`}>GRAND STORIES</a>
+              }`}>{t('nav.stories')}</a>
               <a href="#" className={`text-lg font-medium transition-all duration-300 ${
                 isScrolled ? 'text-gray-800 hover:text-orange-500' : 'text-white hover:text-orange-400'
-              }`}>LOANS</a>
+              }`}>{t('nav.about')}</a>
               <a href="#" className={`text-lg font-medium transition-all duration-300 ${
                 isScrolled ? 'text-gray-800 hover:text-orange-500' : 'text-white hover:text-orange-400'
-              }`}>ABOUT US</a>
-              <a href="#" className={`text-lg font-medium transition-all duration-300 ${
-                isScrolled ? 'text-gray-800 hover:text-orange-500' : 'text-white hover:text-orange-400'
-              }`}>CONTACT</a>
+              }`}>{t('nav.contact')}</a>
             </div>
 
             {/* Right Side - Register, Language, Search */}
@@ -83,7 +106,7 @@ const Header: React.FC = () => {
               <button className={`relative group text-sm transition-all duration-300 ${
                 isScrolled ? 'text-gray-700 hover:text-orange-500' : 'text-white hover:text-orange-400'
               }`}>
-                REGISTER
+                {t('nav.register')}
                 <span className={`absolute left-0 bottom-0 w-full h-0.5 transition-all duration-300 ${
                   isScrolled ? 'bg-orange-500 group-hover:w-full' : 'bg-orange-400 group-hover:w-full'
                 }`}></span>
@@ -91,9 +114,44 @@ const Header: React.FC = () => {
               <span className={`h-4 w-px transition-all duration-300 ${
                 isScrolled ? 'bg-gray-300' : 'bg-white/30'
               }`}></span>
-              <span className={`text-sm transition-all duration-300 ${
-                isScrolled ? 'text-gray-700' : 'text-white'
-              }`}>MK</span>
+              
+              {/* Language Selector */}
+              <div className="relative" ref={languageDropdownRef}>
+                <button 
+                  onClick={() => setIsLanguageDropdownOpen(!isLanguageDropdownOpen)}
+                  className={`flex items-center space-x-2 transition-all duration-300 ${
+                    isScrolled ? 'text-gray-700 hover:text-orange-500' : 'text-white hover:text-orange-400'
+                  }`}
+                >
+                  <span className="text-lg">{currentLanguage?.flag}</span>
+                  <span className="text-sm">{currentLanguage?.code.toUpperCase()}</span>
+                  <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
+                  </svg>
+                </button>
+                
+                {/* Language Dropdown */}
+                {isLanguageDropdownOpen && (
+                  <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-50">
+                    {languages.map((lang) => (
+                      <button
+                        key={lang.code}
+                        onClick={() => {
+                          setLanguage(lang.code);
+                          setIsLanguageDropdownOpen(false);
+                        }}
+                        className={`w-full flex items-center space-x-3 px-4 py-2 text-left hover:bg-gray-100 transition-colors ${
+                          language === lang.code ? 'bg-gray-50 text-orange-600' : 'text-gray-800'
+                        }`}
+                      >
+                        <span className="text-lg">{lang.flag}</span>
+                        <span className="text-sm">{lang.name}</span>
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
+              
               <button className={`transition-all duration-300 ${
                 isScrolled ? 'text-gray-700 hover:text-orange-500' : 'text-white hover:text-orange-400'
               }`}>
@@ -118,12 +176,11 @@ const Header: React.FC = () => {
             <div className={`lg:hidden mt-4 space-y-2 transition-all duration-300 ${
               isScrolled ? 'bg-white text-gray-800' : 'bg-black/80 text-white'
             } p-4 rounded-md`}>
-              <a href="#" className="block px-4 py-2 hover:bg-gray-100">BUILDINGS</a>
-              <a href="#" className="block px-4 py-2 hover:bg-gray-100">3D MAP</a>
-              <a href="#" className="block px-4 py-2 hover:bg-gray-100">GRAND STORIES</a>
-              <a href="#" className="block px-4 py-2 hover:bg-gray-100">LOANS</a>
-              <a href="#" className="block px-4 py-2 hover:bg-gray-100">ABOUT US</a>
-              <a href="#" className="block px-4 py-2 hover:bg-gray-100">CONTACT</a>
+              <a href="#" className="block px-4 py-2 hover:bg-gray-100">{t('nav.buildings')}</a>
+              <a href="#" className="block px-4 py-2 hover:bg-gray-100">{t('nav.3dmap')}</a>
+              <a href="#" className="block px-4 py-2 hover:bg-gray-100">{t('nav.stories')}</a>
+              <a href="#" className="block px-4 py-2 hover:bg-gray-100">{t('nav.about')}</a>
+              <a href="#" className="block px-4 py-2 hover:bg-gray-100">{t('nav.contact')}</a>
             </div>
           )}
         </div>
