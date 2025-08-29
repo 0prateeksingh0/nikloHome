@@ -12,7 +12,7 @@ const Footer: React.FC = () => {
           {/* Left Column - Logo and Company Info */}
           <div className="text-center sm:text-left">
             <div className="flex items-center justify-center sm:justify-start mb-4">
-              <img src="/logo.png" alt="GRAND SKOPJE" className="h-18 md:h-18 mr-3 md:mr-6" />
+              <img src="/logo.png" alt="GRAND SKOPJE" className="h-20 md:h-20 mr-3 md:mr-6" />
             </div>
            
           </div>

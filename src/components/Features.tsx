@@ -42,6 +42,15 @@ const Features: React.FC = () => {
     setCurrentPdfIndex((prev) => (prev - 1 + pdfFiles.length) % pdfFiles.length);
   };
 
+  const downloadPdf = () => {
+    const link = document.createElement('a');
+    link.href = pdfFiles[currentPdfIndex];
+    link.download = `property-${currentPdfIndex + 1}.pdf`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
     <>
       <section className="py-8 md:py-12 lg:py-20 bg-white">
@@ -52,7 +61,10 @@ const Features: React.FC = () => {
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 lg:gap-12">
             {villas.map((villa, index) => (
-              <div key={index} className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 group">
+              <div 
+                key={index} 
+                className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 group"
+              >
                 <div className="relative h-64 md:h-80 lg:h-96">
                   <img 
                     src={villa.image} 
@@ -103,19 +115,30 @@ const Features: React.FC = () => {
 
       {/* PDF Modal */}
       {isPdfModalOpen && (
-        <div className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4">
-          <div className="bg-white rounded-lg w-full max-w-6xl h-full max-h-[90vh] relative flex flex-col">
+        <div className="fixed inset-0 bg-black/80 z-[9999] flex items-center justify-center p-0 sm:p-2 md:p-4">
+          <div className="bg-white w-full h-full sm:rounded-lg sm:max-w-6xl sm:max-h-[90vh] relative flex flex-col">
             {/* Header */}
-            <div className="flex items-center justify-between p-4 border-b bg-gray-50 rounded-t-lg">
-              <h3 className="text-lg md:text-xl font-semibold text-gray-800">GRAND THASSOS - Property Details</h3>
-              <button 
-                onClick={closePdfModal}
-                className="text-gray-500 hover:text-gray-700 transition-colors p-1"
-              >
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </button>
+            <div className="flex items-center justify-between p-3 sm:p-4 border-b bg-gray-50 sm:rounded-t-lg">
+              <h3 className="text-base sm:text-lg md:text-xl font-semibold text-gray-800 pr-2">GRAND THASSOS - Property Details</h3>
+              <div className="flex items-center space-x-2">
+                <button 
+                  onClick={downloadPdf}
+                  className="text-gray-500 hover:text-gray-700 transition-colors p-1 sm:p-2 flex-shrink-0"
+                  title="Download PDF"
+                >
+                  <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
+                </button>
+                <button 
+                  onClick={closePdfModal}
+                  className="text-gray-500 hover:text-gray-700 transition-colors p-1 sm:p-2 flex-shrink-0"
+                >
+                  <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
             </div>
 
             {/* PDF Viewer */}
@@ -130,29 +153,29 @@ const Features: React.FC = () => {
             </div>
 
             {/* Navigation */}
-            <div className="flex items-center justify-between p-4 border-t bg-gray-50 rounded-b-lg">
+            <div className="flex items-center justify-between p-3 sm:p-4 border-t bg-gray-50 sm:rounded-b-lg">
               <button 
                 onClick={prevPdf}
                 disabled={currentPdfIndex === 0}
-                className="flex items-center space-x-2 bg-[#886a4e] hover:bg-[#6d5a3f] disabled:bg-gray-400 disabled:cursor-not-allowed text-white px-4 py-2 rounded-lg transition-colors duration-300"
+                className="flex items-center space-x-1 sm:space-x-2 bg-[#886a4e] hover:bg-[#6d5a3f] disabled:bg-gray-400 disabled:cursor-not-allowed text-white px-2 sm:px-4 py-2 rounded-lg transition-colors duration-300 text-xs sm:text-sm"
               >
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-3 h-3 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                 </svg>
-                <span>Previous</span>
+                <span className="hidden sm:inline">Previous</span>
               </button>
               
-              <span className="text-gray-600 font-medium">
+              <span className="text-gray-600 font-medium text-xs sm:text-sm">
                 {currentPdfIndex + 1} of {pdfFiles.length}
               </span>
               
               <button 
                 onClick={nextPdf}
                 disabled={currentPdfIndex === pdfFiles.length - 1}
-                className="flex items-center space-x-2 bg-[#886a4e] hover:bg-[#6d5a3f] disabled:bg-gray-400 disabled:cursor-not-allowed text-white px-4 py-2 rounded-lg transition-colors duration-300"
+                className="flex items-center space-x-1 sm:space-x-2 bg-[#886a4e] hover:bg-[#6d5a3f] disabled:bg-gray-400 disabled:cursor-not-allowed text-white px-2 sm:px-4 py-2 rounded-lg transition-colors duration-300 text-xs sm:text-sm"
               >
-                <span>Next</span>
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <span className="hidden sm:inline">Next</span>
+                <svg className="w-3 h-3 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>
               </button>
