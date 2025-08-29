@@ -5,14 +5,14 @@ const Footer: React.FC = () => {
   const { t } = useLanguage();
 
   return (
-    <footer className="bg-[#253847] text-white">
+    <footer className="bg-[#3e5362] text-white">
       {/* Main Footer Content */}
       <div className="container mx-auto px-4 py-8 md:py-12 lg:py-16">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
           {/* Left Column - Logo and Company Info */}
           <div className="text-center sm:text-left">
             <div className="flex items-center justify-center sm:justify-start mb-4">
-              <img src="/logo.png" alt="GRAND SKOPJE" className="h-12 md:h-16 mr-3 md:mr-6" />
+              <img src="/logo.png" alt="GRAND SKOPJE" className="h-18 md:h-18 mr-3 md:mr-6" />
             </div>
            
           </div>
