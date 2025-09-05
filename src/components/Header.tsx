@@ -80,9 +80,9 @@ const Header: React.FC = () => {
             </div>
             
             {/* Center - Navigation Links */}
-            <div className="hidden lg:flex items-center space-x-6 md:space-x-8">
+            <div className="hidden lg:flex items-center justify-center space-x-4 md:space-x-6 flex-1 px-8">
               <div className="relative group">
-                <button className={`flex items-center text-base md:text-lg font-medium transition-all duration-300 ${
+                <button className={`flex items-center text-sm font-medium transition-all duration-300 ${
                   isScrolled ? 'text-gray-800 hover:text-primary' : 'text-white hover:text-primary-light'
                 }`}>
                   {t('nav.buildings')}
@@ -96,16 +96,16 @@ const Header: React.FC = () => {
                   <a href="#" className="block px-4 py-2 text-gray-800 hover:bg-gray-100">Building 2</a>
                 </div>
               </div>
-              <a href="#" className={`text-base md:text-lg font-medium transition-all duration-300 ${
+              <a href="#" className={`text-sm font-medium transition-all duration-300 ${
                 isScrolled ? 'text-gray-800 hover:text-primary' : 'text-white hover:text-primary-light'
               }`}>{t('nav.3dmap')}</a>
-              <a href="#" className={`text-base md:text-lg font-medium transition-all duration-300 ${
+              <a href="#" className={`text-sm font-medium transition-all duration-300 ${
                 isScrolled ? 'text-gray-800 hover:text-primary' : 'text-white hover:text-primary-light'
               }`}>{t('nav.stories')}</a>
-              <a href="#" className={`text-base md:text-lg font-medium transition-all duration-300 ${
+              <a href="#" className={`text-sm font-medium transition-all duration-300 ${
                 isScrolled ? 'text-gray-800 hover:text-primary' : 'text-white hover:text-primary-light'
               }`}>{t('nav.about')}</a>
-              <a href="#" className={`text-base md:text-lg font-medium transition-all duration-300 ${
+              <a href="#" className={`text-sm font-medium transition-all duration-300 ${
                 isScrolled ? 'text-gray-800 hover:text-primary' : 'text-white hover:text-primary-light'
               }`}>{t('nav.contact')}</a>
             </div>
@@ -115,14 +115,14 @@ const Header: React.FC = () => {
               {isAuthenticated ? (
                 <div className="hidden md:flex items-center space-x-4">
                   <span className={`text-xs md:text-sm font-medium transition-all duration-300 ${
-                    isScrolled ? 'text-primary' : 'text-primary-light'
+                    isScrolled ? 'text-primary' : 'text-white'
                   }`}>
                     Welcome, {user?.name}
                   </span>
                   <button 
                     onClick={() => setIsProfileModalOpen(true)}
                     className={`relative group text-xs md:text-sm font-medium transition-all duration-300 ${
-                      isScrolled ? 'text-primary hover:text-primary-dark' : 'text-primary-light hover:text-white'
+                      isScrolled ? 'text-primary hover:text-primary-dark' : 'text-white hover:text-primary-light'
                     }`}
                   >
                     Profile
@@ -134,7 +134,7 @@ const Header: React.FC = () => {
                     <button 
                       onClick={() => setIsAdminModalOpen(true)}
                       className={`relative group text-xs md:text-sm font-medium transition-all duration-300 ${
-                        isScrolled ? 'text-primary-dark hover:text-primary' : 'text-primary-light hover:text-white'
+                        isScrolled ? 'text-primary-dark hover:text-primary' : 'text-white hover:text-primary-light'
                       }`}
                     >
                       Admin

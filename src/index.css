@@ -1,22 +1,13 @@
 @import "tailwindcss";
 
-/* Color System Variables */
-:root {
-  --primary-color: #71C9CE;
-  --primary-light: #CBF1F5;
-  --primary-dark: #5BB5BA;
-  --white: #FFFFFF;
-  --text-dark: #2D3748;
-  --text-light: #4A5568;
-  --text-muted: #718096;
-  --success: #48BB78;
-  --error: #F56565;
-  --warning: #ED8936;
-  --background-light: #F7FAFC;
-  --background-white: #FFFFFF;
-  --border-light: #E2E8F0;
-  --shadow-light: rgba(113, 201, 206, 0.1);
-  --shadow-medium: rgba(113, 201, 206, 0.2);
+/* Define custom colors for Tailwind v4 */
+@theme {
+  --color-primary: #71C9CE;
+  --color-primary-light: #CBF1F5;
+  --color-primary-dark: #5BB5BA;
+  --color-success: #48BB78;
+  --color-error: #F56565;
+  --color-warning: #ED8936;
 }
 
 /* Additional custom styles */
@@ -26,13 +17,12 @@ body {
   font-family: "Open Sans", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: var(--background-white);
-  color: var(--text-dark);
+  @apply bg-white text-gray-800;
 }
 
 /* Ensure proper header spacing */
 header {
-  box-shadow: 0 2px 10px var(--shadow-light);
+  @apply shadow-lg;
 }
 
 /* Smooth transitions for carousel */
@@ -46,51 +36,14 @@ header {
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--background-light);
+  @apply bg-gray-100;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--primary-color);
+  background-color: var(--color-primary);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--primary-dark);
-}
-
-/* Custom utility classes for our color system */
-.bg-primary {
-  background-color: var(--primary-color);
-}
-
-.bg-primary-light {
-  background-color: var(--primary-light);
-}
-
-.bg-primary-dark {
-  background-color: var(--primary-dark);
-}
-
-.text-primary {
-  color: var(--primary-color);
-}
-
-.text-primary-dark {
-  color: var(--primary-dark);
-}
-
-.border-primary {
-  border-color: var(--primary-color);
-}
-
-.border-primary-light {
-  border-color: var(--primary-light);
-}
-
-.shadow-primary {
-  box-shadow: 0 4px 6px var(--shadow-light);
-}
-
-.shadow-primary-lg {
-  box-shadow: 0 10px 15px var(--shadow-medium);
+  background-color: var(--color-primary-dark);
 }
