@@ -4,6 +4,7 @@ import Hero from './components/Hero';
 import Features from './components/Features';
 import Location from './components/Location';
 import Footer from './components/Footer';
+import VillaPage from './components/VillaPage';
 import { LanguageProvider } from './contexts/LanguageContext';
 import { AuthProvider } from './contexts/AuthContext';
 
@@ -22,6 +23,7 @@ function App() {
                   <Location />
                 </>
               } />
+              <Route path="/villa/:slug" element={<VillaPage />} />
             </Routes>
             <Footer />
           </div>
