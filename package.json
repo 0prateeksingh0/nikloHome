@@ -11,8 +11,11 @@
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.12",
+    "axios": "^1.6.2",
+    "cloudinary": "^2.7.0",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
+    "react-router-dom": "^6.20.1",
     "tailwindcss": "^4.1.12"
   },
   "devDependencies": {

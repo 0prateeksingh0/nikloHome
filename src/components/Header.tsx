@@ -1,11 +1,20 @@
 import React, { useState, useEffect, useRef } from 'react';
+// import { Link } from 'react-router-dom';
 import { useLanguage } from '../contexts/LanguageContext';
+import { useAuth } from '../contexts/AuthContext';
+import AuthModal from './AuthModal';
+import UserProfile from './UserProfile';
+import AdminDashboard from './AdminDashboard';
 
 const Header: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLanguageDropdownOpen, setIsLanguageDropdownOpen] = useState(false);
+  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
+  const [isProfileModalOpen, setIsProfileModalOpen] = useState(false);
+  const [isAdminModalOpen, setIsAdminModalOpen] = useState(false);
   const { language, setLanguage, t } = useLanguage();
+  const { user, logout, isAuthenticated } = useAuth();
   const languageDropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -38,7 +47,7 @@ const Header: React.FC = () => {
 
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-      isScrolled ? 'bg-[#f5f5f0] shadow-lg' : 'bg-transparent'
+      isScrolled ? 'bg-white shadow-lg' : 'bg-transparent'
     }`}>
       {/* Centered Logo at Top */}
       <div className="flex justify-center py-2 md:py-4">
@@ -46,7 +55,7 @@ const Header: React.FC = () => {
       </div>
       
       {/* Separator Line */}
-      <div className={`h-px bg-gray-300 mx-auto w-full max-w-6xl transition-all duration-300 ${
+      <div className={`h-px mx-auto w-full max-w-6xl transition-all duration-300 ${
         isScrolled ? 'bg-gray-300' : 'bg-white/30'
       }`}></div>
       
@@ -58,15 +67,15 @@ const Header: React.FC = () => {
           <div className="flex items-center justify-between py-2 md:py-4 text-xs md:text-sm">
             {/* Left Side - Contact Info */}
             <div className={`hidden md:flex items-center space-x-4 transition-all duration-300 ${
-              isScrolled ? 'text-gray-700' : 'text-white'
+              isScrolled ? 'text-gray-600' : 'text-white'
             }`}>
               <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 .12-.03.24-.06.36l-2.2 2.2z" />
               </svg>
               <span>
-                <a href="tel:02842145566" className="hover:text-orange-400 transition-colors">0284 214 55 66</a>
+                <a href="tel:02842145566" className="hover:text-primary transition-colors">0284 214 55 66</a>
                 <span className="mx-2">|</span>
-                <a href="tel:05327086515" className="hover:text-orange-400 transition-colors">0532 708 65 15</a>
+                <a href="tel:05327086515" className="hover:text-primary transition-colors">0532 708 65 15</a>
               </span>
             </div>
             
@@ -74,7 +83,7 @@ const Header: React.FC = () => {
             <div className="hidden lg:flex items-center space-x-6 md:space-x-8">
               <div className="relative group">
                 <button className={`flex items-center text-base md:text-lg font-medium transition-all duration-300 ${
-                  isScrolled ? 'text-gray-800 hover:text-orange-500' : 'text-white hover:text-orange-400'
+                  isScrolled ? 'text-gray-800 hover:text-primary' : 'text-white hover:text-primary-light'
                 }`}>
                   {t('nav.buildings')}
                   <svg className="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -88,29 +97,77 @@ const Header: React.FC = () => {
                 </div>
               </div>
               <a href="#" className={`text-base md:text-lg font-medium transition-all duration-300 ${
-                isScrolled ? 'text-gray-800 hover:text-orange-500' : 'text-white hover:text-orange-400'
+                isScrolled ? 'text-gray-800 hover:text-primary' : 'text-white hover:text-primary-light'
               }`}>{t('nav.3dmap')}</a>
               <a href="#" className={`text-base md:text-lg font-medium transition-all duration-300 ${
-                isScrolled ? 'text-gray-800 hover:text-orange-500' : 'text-white hover:text-orange-400'
+                isScrolled ? 'text-gray-800 hover:text-primary' : 'text-white hover:text-primary-light'
               }`}>{t('nav.stories')}</a>
               <a href="#" className={`text-base md:text-lg font-medium transition-all duration-300 ${
-                isScrolled ? 'text-gray-800 hover:text-orange-500' : 'text-white hover:text-orange-400'
+                isScrolled ? 'text-gray-800 hover:text-primary' : 'text-white hover:text-primary-light'
               }`}>{t('nav.about')}</a>
               <a href="#" className={`text-base md:text-lg font-medium transition-all duration-300 ${
-                isScrolled ? 'text-gray-800 hover:text-orange-500' : 'text-white hover:text-orange-400'
+                isScrolled ? 'text-gray-800 hover:text-primary' : 'text-white hover:text-primary-light'
               }`}>{t('nav.contact')}</a>
             </div>
 
-            {/* Right Side - Register, Language, Search */}
+            {/* Right Side - Auth, Language, Search */}
             <div className="flex items-center space-x-2 md:space-x-4">
-              <button className={`hidden md:block relative group text-xs md:text-sm transition-all duration-300 ${
-                isScrolled ? 'text-gray-700 hover:text-orange-500' : 'text-white hover:text-orange-400'
-              }`}>
-                {t('nav.register')}
-                <span className={`absolute left-0 bottom-0 w-full h-0.5 transition-all duration-300 ${
-                  isScrolled ? 'bg-orange-500 group-hover:w-full' : 'bg-orange-400 group-hover:w-full'
-                }`}></span>
-              </button>
+              {isAuthenticated ? (
+                <div className="hidden md:flex items-center space-x-4">
+                  <span className={`text-xs md:text-sm font-medium transition-all duration-300 ${
+                    isScrolled ? 'text-primary' : 'text-primary-light'
+                  }`}>
+                    Welcome, {user?.name}
+                  </span>
+                  <button 
+                    onClick={() => setIsProfileModalOpen(true)}
+                    className={`relative group text-xs md:text-sm font-medium transition-all duration-300 ${
+                      isScrolled ? 'text-primary hover:text-primary-dark' : 'text-primary-light hover:text-white'
+                    }`}
+                  >
+                    Profile
+                    <span className={`absolute left-0 bottom-0 w-full h-0.5 transition-all duration-300 ${
+                      isScrolled ? 'bg-primary group-hover:w-full' : 'bg-primary-light group-hover:w-full'
+                    }`}></span>
+                  </button>
+                  {user?.role === 'admin' && (
+                    <button 
+                      onClick={() => setIsAdminModalOpen(true)}
+                      className={`relative group text-xs md:text-sm font-medium transition-all duration-300 ${
+                        isScrolled ? 'text-primary-dark hover:text-primary' : 'text-primary-light hover:text-white'
+                      }`}
+                    >
+                      Admin
+                      <span className={`absolute left-0 bottom-0 w-full h-0.5 transition-all duration-300 ${
+                        isScrolled ? 'bg-primary-dark group-hover:w-full' : 'bg-primary-light group-hover:w-full'
+                      }`}></span>
+                    </button>
+                  )}
+                  <button 
+                    onClick={logout}
+                    className={`relative group text-xs md:text-sm font-medium transition-all duration-300 ${
+                      isScrolled ? 'text-red-600 hover:text-red-800' : 'text-red-300 hover:text-red-100'
+                    }`}
+                  >
+                    Logout
+                    <span className={`absolute left-0 bottom-0 w-full h-0.5 transition-all duration-300 ${
+                      isScrolled ? 'bg-red-600 group-hover:w-full' : 'bg-red-300 group-hover:w-full'
+                    }`}></span>
+                  </button>
+                </div>
+              ) : (
+                <button 
+                  onClick={() => setIsAuthModalOpen(true)}
+                  className={`hidden md:block relative group text-xs md:text-sm transition-all duration-300 ${
+                    isScrolled ? 'text-gray-700 hover:text-primary' : 'text-white hover:text-primary-light'
+                  }`}
+                >
+                  {t('nav.register')}
+                  <span className={`absolute left-0 bottom-0 w-full h-0.5 transition-all duration-300 ${
+                    isScrolled ? 'bg-primary group-hover:w-full' : 'bg-primary-light group-hover:w-full'
+                  }`}></span>
+                </button>
+              )}
               <span className={`hidden md:block h-4 w-px transition-all duration-300 ${
                 isScrolled ? 'bg-gray-300' : 'bg-white/30'
               }`}></span>
@@ -120,7 +177,7 @@ const Header: React.FC = () => {
                 <button 
                   onClick={() => setIsLanguageDropdownOpen(!isLanguageDropdownOpen)}
                   className={`flex items-center space-x-1 md:space-x-2 transition-all duration-300 ${
-                    isScrolled ? 'text-gray-700 hover:text-orange-500' : 'text-white hover:text-orange-400'
+                    isScrolled ? 'text-gray-700 hover:text-primary' : 'text-white hover:text-primary-light'
                   }`}
                 >
                   <span className="text-base md:text-lg">{currentLanguage?.flag}</span>
@@ -141,7 +198,7 @@ const Header: React.FC = () => {
                           setIsLanguageDropdownOpen(false);
                         }}
                         className={`w-full flex items-center space-x-2 md:space-x-3 px-3 md:px-4 py-2 text-left hover:bg-gray-100 transition-colors ${
-                          language === lang.code ? 'bg-gray-50 text-orange-600' : 'text-gray-800'
+                          language === lang.code ? 'bg-primary-light text-primary' : 'text-gray-800'
                         }`}
                       >
                         <span className="text-base md:text-lg">{lang.flag}</span>
@@ -159,7 +216,7 @@ const Header: React.FC = () => {
               </div>
               
               <button className={`transition-all duration-300 ${
-                isScrolled ? 'text-gray-700 hover:text-orange-500' : 'text-white hover:text-orange-400'
+                isScrolled ? 'text-gray-700 hover:text-primary' : 'text-white hover:text-primary-light'
               }`}>
                 <svg className="w-3 h-3 md:w-4 md:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
@@ -190,9 +247,9 @@ const Header: React.FC = () => {
                   <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 .12-.03.24-.06.36l-2.2 2.2z" />
                 </svg>
                 <span className="text-sm">
-                  <a href="tel:02842145566" className="hover:text-orange-400 transition-colors">0284 214 55 66</a>
+                  <a href="tel:02842145566" className="hover:text-primary transition-colors">0284 214 55 66</a>
                   <span className="mx-2">|</span>
-                  <a href="tel:05327086515" className="hover:text-orange-400 transition-colors">0532 708 65 15</a>
+                  <a href="tel:05327086515" className="hover:text-primary transition-colors">0532 708 65 15</a>
                 </span>
               </div>
               
@@ -218,7 +275,7 @@ const Header: React.FC = () => {
                       }}
                       className={`flex items-center justify-center space-x-2 px-3 py-2 rounded-md text-sm transition-colors ${
                         language === lang.code 
-                          ? 'bg-orange-500 text-white' 
+                          ? 'bg-primary text-white' 
                           : 'bg-gray-100 text-gray-800 hover:bg-gray-200'
                       }`}
                     >
@@ -229,16 +286,74 @@ const Header: React.FC = () => {
                 </div>
               </div>
               
-              {/* Mobile Register Button */}
+              {/* Mobile Auth Button */}
               <div className="pt-3 border-t border-gray-200">
-                <button className="w-full px-4 py-3 text-base font-medium bg-orange-500 text-white rounded-md hover:bg-orange-600 transition-colors">
-                  {t('nav.register')}
-                </button>
+                {isAuthenticated ? (
+                  <div className="space-y-2">
+                    <div className="px-4 py-2 text-sm font-medium text-primary">
+                      Welcome, {user?.name}
+                    </div>
+                    <button 
+                      onClick={() => {
+                        setIsProfileModalOpen(true);
+                        setIsMenuOpen(false);
+                      }}
+                      className="block w-full px-4 py-3 text-base font-medium bg-primary text-white rounded-md hover:bg-primary-dark transition-colors text-center"
+                    >
+                      Profile
+                    </button>
+                    {user?.role === 'admin' && (
+                      <button 
+                        onClick={() => {
+                          setIsAdminModalOpen(true);
+                          setIsMenuOpen(false);
+                        }}
+                        className="block w-full px-4 py-3 text-base font-medium bg-primary-dark text-white rounded-md hover:bg-primary transition-colors text-center"
+                      >
+                        Admin Dashboard
+                      </button>
+                    )}
+                    <button 
+                      onClick={logout}
+                      className="w-full px-4 py-3 text-base font-medium bg-red-500 text-white rounded-md hover:bg-red-600 transition-colors"
+                    >
+                      Logout
+                    </button>
+                  </div>
+                ) : (
+                  <button 
+                    onClick={() => {
+                      setIsAuthModalOpen(true);
+                      setIsMenuOpen(false);
+                    }}
+                    className="w-full px-4 py-3 text-base font-medium bg-primary text-white rounded-md hover:bg-primary-dark transition-colors"
+                  >
+                    {t('nav.register')}
+                  </button>
+                )}
               </div>
             </div>
           )}
         </div>
       </div>
+      
+      {/* Auth Modal */}
+      <AuthModal 
+        isOpen={isAuthModalOpen} 
+        onClose={() => setIsAuthModalOpen(false)} 
+      />
+      
+      {/* Profile Modal */}
+      <UserProfile 
+        isOpen={isProfileModalOpen} 
+        onClose={() => setIsProfileModalOpen(false)} 
+      />
+      
+      {/* Admin Dashboard Modal */}
+      <AdminDashboard 
+        isOpen={isAdminModalOpen} 
+        onClose={() => setIsAdminModalOpen(false)} 
+      />
     </header>
   );
 };

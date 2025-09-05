@@ -1,188 +1,174 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
+import { propertyService } from '../services/property';
+import type { Property } from '../types/property';
+import PropertyCard from './PropertyCard';
+import Pagination from './Pagination';
 
 const Features: React.FC = () => {
-  const [isPdfModalOpen, setIsPdfModalOpen] = useState(false);
-  const [currentPdfIndex, setCurrentPdfIndex] = useState(0);
+  const [properties, setProperties] = useState<Property[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+  const [totalItems, setTotalItems] = useState(0);
+  const itemsPerPage = 5;
 
-  const villas = [
-    {
-      image: "/hero1.jpeg",
-      title: "GRAND VIEW",
-      subtitle: "The new landmark of the city",
-      status: "SOLD"
-    },
-    {
-      image: "/hero2.jpeg", 
-      title: "GRAND THASSOS",
-      subtitle: "Modern living by the thassos",
-      status: "AVAILABLE",
-      hasLocation: true
+  const fetchProperties = useCallback(async () => {
+    try {
+      setLoading(true);
+      setError('');
+      const response = await propertyService.getProperties();
+      const allProperties = response.properties;
+      
+      // Calculate pagination
+      const startIndex = (currentPage - 1) * itemsPerPage;
+      const endIndex = startIndex + itemsPerPage;
+      const paginatedProperties = allProperties.slice(startIndex, endIndex);
+      
+      setProperties(paginatedProperties);
+      setTotalItems(allProperties.length);
+      setTotalPages(Math.ceil(allProperties.length / itemsPerPage));
+    } catch (err: any) {
+      setError('Failed to load properties. Please try again later.');
+      console.error('Error fetching properties:', err);
+    } finally {
+      setLoading(false);
     }
-  ];
+  }, [currentPage, itemsPerPage]);
 
-  const pdfFiles = [
-    "/pdf/property1.pdf",
-    "/pdf/property2.pdf"
-  ];
+  useEffect(() => {
+    fetchProperties();
+  }, [fetchProperties]);
 
-  const openPdfModal = () => {
-    setIsPdfModalOpen(true);
-    setCurrentPdfIndex(0);
+  // Refresh properties when user comes back to the page (e.g., from admin dashboard)
+  useEffect(() => {
+    const handleFocus = () => {
+      fetchProperties();
+    };
+
+    const handleVisibilityChange = () => {
+      if (!document.hidden) {
+        fetchProperties();
+      }
+    };
+
+    // Listen for storage changes (when admin updates properties)
+    const handleStorageChange = (e: StorageEvent) => {
+      if (e.key === 'propertiesUpdated') {
+        fetchProperties();
+        localStorage.removeItem('propertiesUpdated');
+      }
+    };
+
+    // Listen for custom events (same-tab communication)
+    const handlePropertiesUpdated = () => {
+      fetchProperties();
+    };
+
+    window.addEventListener('focus', handleFocus);
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    window.addEventListener('storage', handleStorageChange);
+    window.addEventListener('propertiesUpdated', handlePropertiesUpdated);
+
+    return () => {
+      window.removeEventListener('focus', handleFocus);
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+      window.removeEventListener('storage', handleStorageChange);
+      window.removeEventListener('propertiesUpdated', handlePropertiesUpdated);
+    };
+  }, [fetchProperties]);
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+    // Scroll to top of section when page changes
+    const element = document.getElementById('properties-section');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
-  const closePdfModal = () => {
-    setIsPdfModalOpen(false);
-  };
-
-  const nextPdf = () => {
-    setCurrentPdfIndex((prev) => (prev + 1) % pdfFiles.length);
-  };
-
-  const prevPdf = () => {
-    setCurrentPdfIndex((prev) => (prev - 1 + pdfFiles.length) % pdfFiles.length);
-  };
-
-  const downloadPdf = () => {
-    const link = document.createElement('a');
-    link.href = pdfFiles[currentPdfIndex];
-    link.download = `property-${currentPdfIndex + 1}.pdf`;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
 
   return (
     <>
-      <section className="py-8 md:py-12 lg:py-20 bg-white">
+      <section id="properties-section" className="py-8 md:py-12 lg:py-20 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-8 md:mb-12 lg:mb-16">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#886a4e] mb-4 md:mb-6">Popular Villa</h2>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-primary mb-4 md:mb-6">
+              Our Properties
+            </h2>
+            <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+              Discover our premium collection of luxury properties designed for modern living
+            </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 lg:gap-12">
-            {villas.map((villa, index) => (
-              <div 
-                key={index} 
-                className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 group"
-              >
-                <div className="relative h-64 md:h-80 lg:h-96">
-                  <img 
-                    src={villa.image} 
-                    alt={villa.title}
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-black/30 group-hover:bg-black/40 transition-colors duration-300"></div>
-                  
-                  {/* Status Badge */}
-                  <div className="absolute top-4 right-4">
-                    <span className={`px-3 py-1 rounded-full text-xs font-bold ${
-                      villa.status === "SOLD" 
-                        ? "bg-red-500 text-white" 
-                        : "bg-green-500 text-white"
-                    }`}>
-                      {villa.status}
-                    </span>
-                  </div>
-                  
-                  <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6 lg:p-8 text-white">
-                    <h3 className="text-xl sm:text-2xl md:text-3xl font-bold mb-2 md:mb-3">{villa.title}</h3>
-                    <p className="text-sm sm:text-base md:text-lg opacity-90 mb-4">{villa.subtitle}</p>
-                    {villa.hasLocation && (
-                      <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <button 
-                          onClick={openPdfModal}
-                          className="bg-[#886a4e] hover:bg-[#6d5a3f] text-white px-4 py-2 rounded-lg transition-colors duration-300 text-sm md:text-base font-medium"
-                        >
-                          View Details
-                        </button>
-                        <a 
-                          href="https://maps.app.goo.gl/tRJdDYjmtH9qZzQg9?g_st=aw"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="bg-white hover:bg-gray-100 text-[#886a4e] px-4 py-2 rounded-lg transition-colors duration-300 text-sm md:text-base font-medium text-center"
-                        >
-                          Location
-                        </a>
-                      </div>
-                    )}
+          {/* Loading State */}
+          {loading && (
+            <div className="flex justify-center items-center py-12">
+              <div className="flex items-center space-x-3">
+                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+                <span className="text-gray-600 text-lg">Loading properties...</span>
+              </div>
+            </div>
+          )}
+
+          {/* Error State */}
+          {error && (
+            <div className="text-center py-12">
+              <div className="bg-red-50 border border-red-200 rounded-lg p-6 max-w-md mx-auto">
+                <svg className="w-12 h-12 text-red-500 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <h3 className="text-lg font-semibold text-red-800 mb-2">Error Loading Properties</h3>
+                <p className="text-red-600 mb-4">{error}</p>
+                <button 
+                  onClick={fetchProperties}
+                  className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg transition-colors duration-200"
+                >
+                  Try Again
+                </button>
+              </div>
+            </div>
+          )}
+
+          {/* Properties Grid */}
+          {!loading && !error && (
+            <>
+              {properties.length === 0 ? (
+                <div className="text-center py-12">
+                  <div className="bg-gray-50 border border-gray-200 rounded-lg p-6 max-w-md mx-auto">
+                    <svg className="w-12 h-12 text-gray-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                    </svg>
+                    <h3 className="text-lg font-semibold text-gray-800 mb-2">No Properties Available</h3>
+                    <p className="text-gray-600">Check back later for new property listings.</p>
                   </div>
                 </div>
-              </div>
-            ))}
-          </div>
+              ) : (
+                <>
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+                    {properties.map((property) => (
+                      <PropertyCard
+                        key={property.id}
+                        property={property}
+                      />
+                    ))}
+                  </div>
+
+                  {/* Pagination */}
+                  <Pagination
+                    currentPage={currentPage}
+                    totalPages={totalPages}
+                    onPageChange={handlePageChange}
+                    itemsPerPage={itemsPerPage}
+                    totalItems={totalItems}
+                  />
+                </>
+              )}
+            </>
+          )}
         </div>
       </section>
 
-      {/* PDF Modal */}
-      {isPdfModalOpen && (
-        <div className="fixed inset-0 bg-black/80 z-[9999] flex items-center justify-center p-0 sm:p-2 md:p-4">
-          <div className="bg-white w-full h-full sm:rounded-lg sm:max-w-6xl sm:max-h-[90vh] relative flex flex-col">
-            {/* Header */}
-            <div className="flex items-center justify-between p-3 sm:p-4 border-b bg-gray-50 sm:rounded-t-lg">
-              <h3 className="text-base sm:text-lg md:text-xl font-semibold text-gray-800 pr-2">GRAND THASSOS - Property Details</h3>
-              <div className="flex items-center space-x-2">
-                <button 
-                  onClick={downloadPdf}
-                  className="text-gray-500 hover:text-gray-700 transition-colors p-1 sm:p-2 flex-shrink-0"
-                  title="Download PDF"
-                >
-                  <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                  </svg>
-                </button>
-                <button 
-                  onClick={closePdfModal}
-                  className="text-gray-500 hover:text-gray-700 transition-colors p-1 sm:p-2 flex-shrink-0"
-                >
-                  <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                  </svg>
-                </button>
-              </div>
-            </div>
-
-            {/* PDF Viewer */}
-            <div className="flex-1 relative overflow-hidden">
-              <iframe
-                src={`${pdfFiles[currentPdfIndex]}#toolbar=0&navpanes=0&scrollbar=0`}
-                className="w-full h-full border-0"
-                title="Property PDF"
-                frameBorder="0"
-                allowFullScreen
-              />
-            </div>
-
-            {/* Navigation */}
-            <div className="flex items-center justify-between p-3 sm:p-4 border-t bg-gray-50 sm:rounded-b-lg">
-              <button 
-                onClick={prevPdf}
-                disabled={currentPdfIndex === 0}
-                className="flex items-center space-x-1 sm:space-x-2 bg-[#886a4e] hover:bg-[#6d5a3f] disabled:bg-gray-400 disabled:cursor-not-allowed text-white px-2 sm:px-4 py-2 rounded-lg transition-colors duration-300 text-xs sm:text-sm"
-              >
-                <svg className="w-3 h-3 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                </svg>
-                <span className="hidden sm:inline">Previous</span>
-              </button>
-              
-              <span className="text-gray-600 font-medium text-xs sm:text-sm">
-                {currentPdfIndex + 1} of {pdfFiles.length}
-              </span>
-              
-              <button 
-                onClick={nextPdf}
-                disabled={currentPdfIndex === pdfFiles.length - 1}
-                className="flex items-center space-x-1 sm:space-x-2 bg-[#886a4e] hover:bg-[#6d5a3f] disabled:bg-gray-400 disabled:cursor-not-allowed text-white px-2 sm:px-4 py-2 rounded-lg transition-colors duration-300 text-xs sm:text-sm"
-              >
-                <span className="hidden sm:inline">Next</span>
-                <svg className="w-3 h-3 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
     </>
   );
 };

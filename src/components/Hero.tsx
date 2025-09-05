@@ -64,7 +64,7 @@ const Hero: React.FC = () => {
       {/* Navigation Arrows */}
       <button 
         onClick={prevSlide}
-        className="absolute left-2 md:left-4 top-1/2 transform -translate-y-1/2 z-20 text-white hover:text-orange-400 transition-colors bg-black/20 hover:bg-black/40 rounded-full p-2 md:p-3"
+        className="absolute left-2 md:left-4 top-1/2 transform -translate-y-1/2 z-20 text-white hover:text-primary-light transition-colors bg-black/20 hover:bg-black/40 rounded-full p-2 md:p-3"
       >
         <svg className="w-6 h-6 md:w-8 md:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -72,7 +72,7 @@ const Hero: React.FC = () => {
       </button>
       <button 
         onClick={nextSlide}
-        className="absolute right-2 md:right-4 top-1/2 transform -translate-y-1/2 z-20 text-white hover:text-orange-400 transition-colors bg-black/20 hover:bg-black/40 rounded-full p-2 md:p-3"
+        className="absolute right-2 md:right-4 top-1/2 transform -translate-y-1/2 z-20 text-white hover:text-primary-light transition-colors bg-black/20 hover:bg-black/40 rounded-full p-2 md:p-3"
       >
         <svg className="w-6 h-6 md:w-8 md:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
