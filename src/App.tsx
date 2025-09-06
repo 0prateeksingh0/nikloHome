@@ -10,7 +10,7 @@ import { AuthProvider } from './contexts/AuthContext';
 
 function App() {
   return (
-    <Router>
+    <Router future={{ v7_relativeSplatPath: true }}>
       <AuthProvider>
         <LanguageProvider>
           <div className="min-h-screen bg-white">

@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import BrochureViewer from './BrochureViewer';
 
 const Hero: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [isBrochureOpen, setIsBrochureOpen] = useState(false);
 
   const slides = [
     {
@@ -57,12 +55,6 @@ const Hero: React.FC = () => {
           <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl mb-6 md:mb-8 max-w-2xl mx-auto leading-relaxed">
             {slides[currentSlide].subtitle}
           </p>
-          <button 
-            onClick={() => setIsBrochureOpen(true)}
-            className="border-2 border-white text-white px-6 md:px-8 py-2 md:py-3 rounded-lg hover:bg-white hover:text-black transition-all duration-300 text-base md:text-lg font-medium"
-          >
-            BROCHURES
-          </button>
         </div>
       </div>
 
@@ -97,11 +89,6 @@ const Hero: React.FC = () => {
         ))}
       </div>
 
-      {/* Brochure Viewer Modal */}
-      <BrochureViewer 
-        isOpen={isBrochureOpen} 
-        onClose={() => setIsBrochureOpen(false)} 
-      />
     </section>
   );
 };

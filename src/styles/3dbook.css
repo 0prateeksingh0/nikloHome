@@ -1,0 +1,90 @@
+/* React PageFlip Styles */
+.flip-book {
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  position: relative;
+}
+
+.flip-book .page {
+  background: white;
+  border: 1px solid #ddd;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+}
+
+.flip-book .page:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Ensure iframes fill the page properly */
+.flip-book .page iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  pointer-events: auto;
+}
+
+/* Cover page styling */
+.flip-book .page.cover {
+  background: linear-gradient(135deg, #f5f5f0 0%, #e8e8e0 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #333;
+  font-family: 'Georgia', serif;
+}
+
+.flip-book .page.cover h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: #d97706;
+}
+
+.flip-book .page.cover p {
+  font-size: 1.2rem;
+  color: #666;
+}
+
+/* Mobile optimizations */
+@media (max-width: 640px) {
+  .flip-book {
+    width: 100%;
+    height: 400px;
+  }
+  
+  .flip-book .page {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .flip-book .page.cover h1 {
+    font-size: 1.8rem;
+  }
+  
+  .flip-book .page.cover p {
+    font-size: 1rem;
+  }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+  .flip-book .page {
+    transition: transform 0.3s ease;
+  }
+}
+
+/* Page flip animation improvements */
+.flip-book .page.flipping {
+  z-index: 10;
+}
+
+.flip-book .page.shadow {
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}

@@ -100,9 +100,9 @@ const Header: React.FC = () => {
             </div>
             
             {/* Center - Navigation Links */}
-            <div className="hidden lg:flex items-center space-x-6 md:space-x-8">
+            <div className="hidden lg:flex items-center space-x-3 md:space-x-4">
               <div className="relative group">
-                <button className={`flex items-center text-base md:text-lg font-medium transition-all duration-300 ${
+                <button className={`flex items-center text-sm md:text-base font-medium transition-all duration-300 ${
                   isScrolled ? 'text-gray-800 hover:text-orange-500' : 'text-white hover:text-orange-400'
                 }`}>
                   VILLAS
@@ -137,16 +137,16 @@ const Header: React.FC = () => {
                   </div>
                 </div>
               </div>
-              <a href="#" className={`text-base md:text-lg font-medium transition-all duration-300 ${
+              <a href="#" className={`text-sm md:text-base font-medium transition-all duration-300 ${
                 isScrolled ? 'text-gray-800 hover:text-orange-500' : 'text-white hover:text-orange-400'
               }`}>{t('nav.3dmap')}</a>
-              <a href="#" className={`text-base md:text-lg font-medium transition-all duration-300 ${
+              <a href="#" className={`text-sm md:text-base font-medium transition-all duration-300 ${
                 isScrolled ? 'text-gray-800 hover:text-orange-500' : 'text-white hover:text-orange-400'
               }`}>{t('nav.stories')}</a>
-              <a href="#" className={`text-base md:text-lg font-medium transition-all duration-300 ${
+              <a href="#" className={`text-sm md:text-base font-medium transition-all duration-300 ${
                 isScrolled ? 'text-gray-800 hover:text-orange-500' : 'text-white hover:text-orange-400'
               }`}>{t('nav.about')}</a>
-              <a href="#" className={`text-base md:text-lg font-medium transition-all duration-300 ${
+              <a href="#" className={`text-sm md:text-base font-medium transition-all duration-300 ${
                 isScrolled ? 'text-gray-800 hover:text-orange-500' : 'text-white hover:text-orange-400'
               }`}>{t('nav.contact')}</a>
             </div>
@@ -319,10 +319,10 @@ const Header: React.FC = () => {
                   </div>
                 ))}
               </div>
-              <a href="#" className="block px-4 py-3 text-base hover:bg-gray-100 rounded-md transition-colors">{t('nav.3dmap')}</a>
-              <a href="#" className="block px-4 py-3 text-base hover:bg-gray-100 rounded-md transition-colors">{t('nav.stories')}</a>
-              <a href="#" className="block px-4 py-3 text-base hover:bg-gray-100 rounded-md transition-colors">{t('nav.about')}</a>
-              <a href="#" className="block px-4 py-3 text-base hover:bg-gray-100 rounded-md transition-colors">{t('nav.contact')}</a>
+              <a href="#" className="block px-4 py-3 text-sm hover:bg-gray-100 rounded-md transition-colors">{t('nav.3dmap')}</a>
+              <a href="#" className="block px-4 py-3 text-sm hover:bg-gray-100 rounded-md transition-colors">{t('nav.stories')}</a>
+              <a href="#" className="block px-4 py-3 text-sm hover:bg-gray-100 rounded-md transition-colors">{t('nav.about')}</a>
+              <a href="#" className="block px-4 py-3 text-sm hover:bg-gray-100 rounded-md transition-colors">{t('nav.contact')}</a>
               
               {/* Mobile Language Selector */}
               <div className="pt-3 border-t border-gray-200">

@@ -6,7 +6,6 @@ interface PropertyCardProps {
 }
 
 const PropertyCard: React.FC<PropertyCardProps> = ({ property }) => {
-  const [isPdfModalOpen, setIsPdfModalOpen] = useState(false);
   const [currentProperty, setCurrentProperty] = useState(property);
 
   // Update local state when property prop changes
@@ -14,51 +13,6 @@ const PropertyCard: React.FC<PropertyCardProps> = ({ property }) => {
     setCurrentProperty(property);
   }, [property]);
 
-  const openPdfModal = () => {
-    setIsPdfModalOpen(true);
-  };
-
-  const closePdfModal = () => {
-    setIsPdfModalOpen(false);
-  };
-
-  const downloadPdf = async () => {
-    if (currentProperty.brochure) {
-      try {
-        // Fetch the PDF file
-        const response = await fetch(currentProperty.brochure);
-        if (!response.ok) {
-          throw new Error('Failed to fetch PDF');
-        }
-        
-        // Convert to blob
-        const blob = await response.blob();
-        
-        // Create object URL
-        const url = window.URL.createObjectURL(blob);
-        
-        // Create download link
-        const link = document.createElement('a');
-        link.href = url;
-        link.download = `${currentProperty.name.replace(/\s+/g, '_')}_brochure.pdf`;
-        document.body.appendChild(link);
-        link.click();
-        
-        // Clean up
-        document.body.removeChild(link);
-        window.URL.revokeObjectURL(url);
-      } catch (error) {
-        console.error('Error downloading PDF:', error);
-        // Fallback to direct link if fetch fails
-        const link = document.createElement('a');
-        link.href = currentProperty.brochure;
-        link.download = `${currentProperty.name.replace(/\s+/g, '_')}_brochure.pdf`;
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-      }
-    }
-  };
 
   const getStatusColor = (status: string) => {
     switch (status.toLowerCase()) {
@@ -142,77 +96,20 @@ const PropertyCard: React.FC<PropertyCardProps> = ({ property }) => {
 
           {/* Action Buttons */}
           <div className="flex flex-col sm:flex-row gap-3">
-            {currentProperty.brochure && (
-              <button 
-                onClick={openPdfModal}
-                className="flex-1 bg-primary hover:bg-primary-dark text-white px-4 py-3 rounded-lg transition-all duration-200 shadow-md hover:shadow-lg transform hover:-translate-y-0.5 flex items-center justify-center"
-              >
-                <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                </svg>
-                View Details
-              </button>
-            )}
-          </div>
-
-          {/* Download Button */}
-          {currentProperty.brochure && (
             <button 
-              onClick={downloadPdf}
-              className="w-full mt-3 bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-2 rounded-lg transition-colors duration-200 flex items-center justify-center"
+              className="flex-1 bg-orange-500 hover:bg-orange-600 text-white px-4 py-3 rounded-lg transition-all duration-200 shadow-md hover:shadow-lg transform hover:-translate-y-0.5 flex items-center justify-center"
+              disabled
             >
               <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
               </svg>
-              Download Brochure
+              Brochure
             </button>
-          )}
+          </div>
+
         </div>
       </div>
 
-      {/* PDF Modal */}
-      {isPdfModalOpen && currentProperty.brochure && (
-        <div className="fixed inset-0 bg-black/80 z-[9999] flex items-center justify-center p-4">
-          <div className="bg-white w-full max-w-6xl max-h-[90vh] rounded-xl shadow-2xl relative flex flex-col">
-            {/* Header */}
-            <div className="flex items-center justify-between p-6 border-b bg-gray-50 rounded-t-xl">
-              <h3 className="text-xl font-bold text-gray-900">{currentProperty.name} - Property Details</h3>
-              <div className="flex items-center space-x-3">
-                <button 
-                  onClick={downloadPdf}
-                  className="bg-primary hover:bg-primary-dark text-white px-4 py-2 rounded-lg transition-colors duration-200 flex items-center"
-                  title="Download PDF"
-                >
-                  <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                  </svg>
-                  Download
-                </button>
-                <button 
-                  onClick={closePdfModal}
-                  className="text-gray-500 hover:text-gray-700 transition-colors p-2"
-                >
-                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                  </svg>
-                </button>
-              </div>
-            </div>
-
-            {/* PDF Viewer */}
-            <div className="flex-1 relative overflow-hidden">
-              <iframe
-                src={`${currentProperty.brochure}#toolbar=0&navpanes=0&scrollbar=0`}
-                className="w-full h-full border-0"
-                title={`${currentProperty.name} PDF`}
-                frameBorder="0"
-                allowFullScreen
-              />
-            </div>
-          </div>
-        </div>
-      )}
     </>
   );
 };
