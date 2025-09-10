@@ -31,6 +31,13 @@ const translations = {
     'features.size': 'APARTMENT SIZE',
     'features.duplex': 'DUPLEX APARTMENTS',
     
+    // Villas
+    'villas.title': 'Luxury Villas',
+    'villas.description': 'Discover our exclusive collection of luxury villas designed for modern living. Each property offers unique features and premium amenities.',
+    'villas.feature1': 'Premium location with stunning views',
+    'villas.feature2': 'Modern architecture and design',
+    'villas.feature3': 'High-quality finishes and materials',
+    
     // Location
     'location.title': 'OUR OFFICE LOCATION',
     'location.description': 'Visit our office to discuss your dream home. We\'re here to help you find the perfect property.',
@@ -75,6 +82,13 @@ const translations = {
     'features.size': 'DAİRE BÜYÜKLÜĞÜ',
     'features.duplex': 'DUBLEKS DAİRE',
     
+    // Villas
+    'villas.title': 'Lüks Villalar',
+    'villas.description': 'Modern yaşam için tasarlanmış özel villa koleksiyonumuzu keşfedin. Her mülk benzersiz özellikler ve premium olanaklar sunar.',
+    'villas.feature1': 'Muhteşem manzaralı premium konum',
+    'villas.feature2': 'Modern mimari ve tasarım',
+    'villas.feature3': 'Yüksek kaliteli kaplamalar ve malzemeler',
+    
     // Location
     'location.title': 'OFİS KONUMUMUZ',
     'location.description': 'Hayalinizdeki ev hakkında konuşmak için ofisimizi ziyaret edin. Mükemmel mülkü bulmanızda size yardımcı olmak için buradayız.',
@@ -118,6 +132,13 @@ const translations = {
     'features.rooms': 'ΔΩΜΑΤΙΑ ΑΝΑ ΔΙΑΜΕΡΙΣΜΑ',
     'features.size': 'ΜΕΓΕΘΟΣ ΔΙΑΜΕΡΙΣΜΑΤΟΣ',
     'features.duplex': 'ΔΙΠΛΑ ΔΙΑΜΕΡΙΣΜΑΤΑ',
+    
+    // Villas
+    'villas.title': 'Πολυτελή Βίλες',
+    'villas.description': 'Ανακαλύψτε την αποκλειστική συλλογή πολυτελών βιλών μας που σχεδιάστηκαν για σύγχρονη διαβίωση. Κάθε ιδιοκτησία προσφέρει μοναδικά χαρακτηριστικά και premium ανέσεις.',
+    'villas.feature1': 'Premium τοποθεσία με εντυπωσιακές θέα',
+    'villas.feature2': 'Σύγχρονη αρχιτεκτονική και σχεδιασμός',
+    'villas.feature3': 'Υψηλής ποιότητας φινιρίσματα και υλικά',
     
     // Location
     'location.title': 'Η ΤΟΠΟΘΕΣΙΑ ΤΟΥ ΓΡΑΦΕΙΟΥ ΜΑΣ',
