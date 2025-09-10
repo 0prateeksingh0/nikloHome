@@ -5,6 +5,7 @@ import Features from './components/Features';
 import Location from './components/Location';
 import Footer from './components/Footer';
 import VillaPage from './components/VillaPage';
+import ContactPage from './components/ContactPage';
 import { LanguageProvider } from './contexts/LanguageContext';
 import { AuthProvider } from './contexts/AuthContext';
 
@@ -24,6 +25,7 @@ function App() {
                 </>
               } />
               <Route path="/villa/:slug" element={<VillaPage />} />
+              <Route path="/contact" element={<ContactPage />} />
             </Routes>
             <Footer />
           </div>
