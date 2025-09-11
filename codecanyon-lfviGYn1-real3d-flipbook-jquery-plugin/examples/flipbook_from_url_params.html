@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" type="text/css" href="../src/css/flipbook.css" />
+        <script src="../src/js/flipbook.js"></script>
+
+        <script type="text/javascript">
+            function getUrlParameter(name) {
+                name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+                var regex = new RegExp('[\?&]' + name + '=([^&#]*)');
+                var results = regex.exec(location.search);
+                return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+            }
+
+            function getFlipbookOptions() {
+                var optionsParam = getUrlParameter('flipbookOptions');
+                if (optionsParam) {
+                    try {
+                        return JSON.parse(optionsParam);
+                    } catch (e) {
+                        console.error('Invalid flipbook options', e);
+                    }
+                }
+                return null;
+            }
+
+            document.addEventListener('DOMContentLoaded', function () {
+                var flipbookOptions = getFlipbookOptions();
+
+                if (flipbookOptions) {
+                    var container = document.getElementById('container');
+                    var flipbook = new FlipBook(container, flipbookOptions);
+                } else {
+                    console.error('No flipbook options provided in URL.');
+                }
+            });
+        </script>
+    </head>
+
+    <body>
+        <div id="container"></div>
+    </body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <link rel="stylesheet" href="../build/css/flipbook.min.css">
+
+        <script
+            src="https://code.jquery.com/jquery-3.6.3.js"
+            integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
+            crossorigin="anonymous"
+        ></script>
+
+        <script src="../build/js/flipbook.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('#container').flipBook({
+                    pages: [
+                        {
+                            src: 'images/catalog/1.jpg',
+                            thumb: 'images/catalog/1.jpg',
+                            title: 'Cover',
+                            htmlContent: `<a class="flipbook-page-item flipbook-page-item-link" href="https://real3dflipbook.com" target="_blank" style="width: 206px; height: 40px; position: absolute; top: 893px; left: 64px;"></a>
+								<a class="flipbook-page-item flipbook-page-item-link internalLink" href="#" data-page="2" style="width: 309px; height: 163px; position: absolute; top: 835px; left: 395px;"></a>`,
+                        },
+                        {
+                            src: 'images/catalog/2.jpg',
+                            thumb: 'images/catalog/thumb2.jpg',
+                            title: 'Content',
+                            htmlContent: `<a class="flipbook-page-item flipbook-page-item-link internalLink" href="#" data-page="4" style="width: 406px; height: 128px; position: absolute; top: 312px; left: 285px;"></a><a class="flipbook-page-item flipbook-page-item-link internalLink" href="#" data-page="8" style="width: 404px; height: 126px; position: absolute; top: 454px; left: 288px;"></a>
+								<a class="flipbook-page-item flipbook-page-item-link internalLink" href="#" data-page="13" style="width: 403px; height: 126px; position: absolute; top: 595px; left: 287px;"></a><a class="flipbook-page-item flipbook-page-item-link internalLink" href="#" data-page="16" style="width: 401px; height: 125px; position: absolute; top: 738px; left: 288px;"></a>
+								<iframe class="flipbook-page-item flipbook-youtube" src="https://www.youtube.com/embed/Cv1W4nzxPBM?enablejsapi=1?enablejsapi=1&amp;autoplay=1&amp;mute=1" style="top:454px;left:43px;width:226px;height:126px;" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+								<video class="flipbook-page-item" playsinline="" autoplay="" muted="" loop="" style="top:313px;left:40px;width:230px;height:128px;">
+									<source type="video/mp4" src="https://real3dflipbook.com/wp-content/uploads/2020/03/interior_design.mp4">
+								</video>`,
+                        },
+                        {
+                            src: 'images/catalog/3.jpg',
+                            thumb: 'images/catalog/thumb3.jpg',
+                            title: 'Welcome',
+                        },
+                        {
+                            src: 'images/catalog/4.jpg',
+                            thumb: 'images/catalog/thumb4.jpg',
+                            title: 'Design with attitude',
+                            htmlContent: `<a class="flipbook-page-item flipbook-page-item-link" href="https://real3dflipbook.com" target="_blank" style="width: 602px; height: 653px; position: absolute; top: 100px; left: 53px;"></a>
+									<video class="flipbook-page-item" playsinline="" autoplay="" muted="" loop="" controls="" style="top:769px;left:52px;width:278px;height:158px;">
+                    					<source type="video/mp4" src="https://real3dflipbook.com/wp-content/uploads/2020/03/interior_design.mp4">
+                        			</video>`,
+                        },
+                        {
+                            src: 'images/catalog/5.jpg',
+                            thumb: 'images/catalog/thumb5.jpg',
+                            htmlContent: `<video class="flipbook-page-item" playsinline="" autoplay="" muted="" loop="" style="top:195px;left:359px;width:297px;height:206px;">
+                    					<source type="video/mp4" src="https://real3dflipbook.com/wp-content/uploads/2020/03/modern-style-duplex-apartment-residence-home-decoration-modern-loft-interior-design_by_anontae2522_preview_2.mp4">
+                        			</video>`,
+                        },
+                        {
+                            src: 'images/catalog/6.jpg',
+                            thumb: 'images/catalog/thumb6.jpg',
+                            title: 'New Arrivals',
+                        },
+                        {
+                            src: 'images/catalog/7.jpg',
+                            thumb: 'images/catalog/thumb7.jpg',
+                        },
+                        {
+                            src: 'images/catalog/8.jpg',
+                            thumb: 'images/catalog/thumb8.jpg',
+                            title: 'Get our newsletter',
+                        },
+                    ],
+                });
+            });
+        </script>
+    </head>
+
+    <body>
+        <div id="container"></div>
+    </body>
+</html>

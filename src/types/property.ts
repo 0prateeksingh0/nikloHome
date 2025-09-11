@@ -2,7 +2,8 @@ export interface Property {
   id: string;
   name: string;
   location: string;
-  brochure?: string;
+  description?: string;
+  brochureUrl?: string;
   image?: string;
   model3d?: string;
   availableApartments: number;
@@ -14,7 +15,8 @@ export interface Property {
 export interface CreatePropertyData {
   name: string;
   location: string;
-  brochure?: string;
+  description?: string;
+  brochureUrl?: string;
   image?: string;
   model3d?: string;
   availableApartments?: number;

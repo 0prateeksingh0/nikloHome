@@ -36,10 +36,10 @@ const AdminPropertyCard: React.FC<AdminPropertyCardProps> = ({
   };
 
   const downloadPdf = async () => {
-    if (currentProperty.brochure) {
+    if (currentProperty.brochureUrl) {
       try {
         // Fetch the PDF file
-        const response = await fetch(currentProperty.brochure);
+        const response = await fetch(currentProperty.brochureUrl);
         if (!response.ok) {
           throw new Error('Failed to fetch PDF');
         }
@@ -64,7 +64,7 @@ const AdminPropertyCard: React.FC<AdminPropertyCardProps> = ({
         console.error('Error downloading PDF:', error);
         // Fallback to direct link if fetch fails
         const link = document.createElement('a');
-        link.href = currentProperty.brochure;
+        link.href = currentProperty.brochureUrl;
         link.download = `${currentProperty.name.replace(/\s+/g, '_')}_brochure.pdf`;
         document.body.appendChild(link);
         link.click();
@@ -294,7 +294,7 @@ const AdminPropertyCard: React.FC<AdminPropertyCardProps> = ({
 
             {/* Action Buttons */}
             <div className="flex space-x-2">
-              {currentProperty.brochure && (
+              {currentProperty.brochureUrl && (
                 <button 
                   onClick={openPdfModal}
                   className="flex-1 bg-blue-100 hover:bg-blue-200 text-blue-700 px-4 py-2 rounded-lg transition-colors duration-200 flex items-center justify-center"
@@ -320,7 +320,7 @@ const AdminPropertyCard: React.FC<AdminPropertyCardProps> = ({
             </div>
 
             {/* Download Button */}
-            {currentProperty.brochure && (
+            {currentProperty.brochureUrl && (
               <button 
                 onClick={downloadPdf}
                 className="w-full mt-3 bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-2 rounded-lg transition-colors duration-200 flex items-center justify-center"
@@ -375,7 +375,7 @@ const AdminPropertyCard: React.FC<AdminPropertyCardProps> = ({
       )}
 
       {/* PDF Modal */}
-      {isPdfModalOpen && currentProperty.brochure && (
+      {isPdfModalOpen && currentProperty.brochureUrl && (
         <div className="fixed inset-0 bg-black/80 z-[9999] flex items-center justify-center p-4">
           <div className="bg-white w-full max-w-6xl max-h-[90vh] rounded-xl shadow-2xl relative flex flex-col">
             {/* Header */}
@@ -406,7 +406,7 @@ const AdminPropertyCard: React.FC<AdminPropertyCardProps> = ({
             {/* PDF Viewer */}
             <div className="flex-1 relative overflow-hidden">
               <iframe
-                src={`${currentProperty.brochure}#toolbar=0&navpanes=0&scrollbar=0`}
+                src={`${currentProperty.brochureUrl}#toolbar=0&navpanes=0&scrollbar=0`}
                 className="w-full h-full border-0"
                 title={`${currentProperty.name} PDF`}
                 frameBorder="0"

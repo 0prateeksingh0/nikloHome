@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <link rel="stylesheet" href="../build/css/flipbook.min.css">
+
+        <script
+            src="https://code.jquery.com/jquery-3.6.3.js"
+            integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
+            crossorigin="anonymous"
+        ></script>
+
+        <script src="../build/js/flipbook.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('#container').flipBook({
+                    pages: [
+                        {
+                            src: 'images/catalog/1.jpg',
+                            thumb: 'images/catalog/1.jpg',
+                            title: 'Cover',
+                            items: [
+                                {
+                                    type: 'spotlight',
+                                    x: 64,
+                                    y: 893,
+                                    width: 206,
+                                    height: 40,
+                                    url: 'images/catalog/1.jpg',
+                                    title: 'Spotlight image demo',
+                                    description: 'Open image in spotlight by clicking on a spotlight rectangle',
+                                },
+                                {
+                                    type: 'spotlight',
+                                    x: 395,
+                                    y: 835,
+                                    width: 309,
+                                    height: 163,
+                                    url: 'images/catalog/2.jpg',
+                                    title: 'Image title',
+                                    description: 'Image Description',
+                                },
+                            ],
+                        },
+                        {
+                            src: 'images/catalog/2.jpg',
+                            thumb: 'images/catalog/thumb2.jpg',
+                            title: 'Content',
+                            items: [
+                                {
+                                    x: 285,
+                                    y: 312,
+                                    width: 406,
+                                    height: 128,
+                                    type: 'link',
+                                    page: 4,
+                                },
+                                {
+                                    x: 288,
+                                    y: 454,
+                                    width: 404,
+                                    height: 126,
+                                    type: 'link',
+                                    page: 8,
+                                },
+                                {
+                                    x: 287,
+                                    y: 595,
+                                    width: 403,
+                                    height: 126,
+                                    type: 'link',
+                                    page: 13,
+                                },
+                                {
+                                    x: 288,
+                                    y: 738,
+                                    width: 401,
+                                    height: 125,
+                                    type: 'link',
+                                    page: 16,
+                                },
+                                {
+                                    x: 43,
+                                    y: 454,
+                                    width: 226,
+                                    height: 126,
+                                    url: 'https://www.youtube.com/embed/Cv1W4nzxPBM?enablejsapi=1',
+                                    type: 'youtube',
+                                    autoplay: false,
+                                },
+                                {
+                                    x: 43,
+                                    y: 454,
+                                    width: 226,
+                                    height: 126,
+                                    url: 'https://www.youtube.com/embed/Cv1W4nzxPBM?enablejsapi=1',
+                                    type: 'spotlight',
+                                    title: 'Spotlight Youtube video',
+                                },
+                                {
+                                    x: 40,
+                                    y: 313,
+                                    width: 230,
+                                    height: 128,
+                                    url: 'https://real3dflipbook.com/wp-content/uploads/2020/03/interior_design.mp4',
+                                    type: 'video',
+                                    autoplay: false,
+                                },
+                                {
+                                    x: 40,
+                                    y: 313,
+                                    width: 230,
+                                    height: 128,
+                                    url: 'https://real3dflipbook.com/wp-content/uploads/2020/03/interior_design.mp4',
+                                    type: 'spotlight',
+                                    title: 'Spotlight .mp4 video',
+                                },
+                            ],
+                        },
+                        {
+                            src: 'images/catalog/3.jpg',
+                            thumb: 'images/catalog/thumb3.jpg',
+                            title: 'Welcome',
+                        },
+                        {
+                            src: 'images/catalog/4.jpg',
+                            thumb: 'images/catalog/thumb4.jpg',
+                            title: 'Design with attitude',
+                            items: [
+                                {
+                                    x: 53,
+                                    y: 100,
+                                    width: 602,
+                                    height: 653,
+                                    url: 'https://real3dflipbook.com',
+                                    type: 'link',
+                                },
+                                {
+                                    x: 52,
+                                    y: 769,
+                                    width: 278,
+                                    height: 158,
+                                    url: 'https://real3dflipbook.com/wp-content/uploads/2020/03/interior_design.mp4',
+                                    type: 'video',
+                                    autoplay: true,
+                                    muted: true,
+                                    controls: true,
+                                    loop: true,
+                                },
+                            ],
+                        },
+                        {
+                            src: 'images/catalog/5.jpg',
+                            thumb: 'images/catalog/thumb5.jpg',
+                            items: [
+                                {
+                                    x: 359,
+                                    y: 195,
+                                    width: 297,
+                                    height: 206,
+                                    url: 'https://real3dflipbook.com/wp-content/uploads/2020/03/modern-style-duplex-apartment-residence-home-decoration-modern-loft-interior-design_by_anontae2522_preview_2.mp4',
+                                    type: 'video',
+                                    autoplay: true,
+                                    muted: true,
+                                    controls: false,
+                                    loop: true,
+                                },
+                            ],
+                        },
+                        {
+                            src: 'images/catalog/6.jpg',
+                            thumb: 'images/catalog/thumb6.jpg',
+                            title: 'New Arrivals',
+                        },
+                        {
+                            src: 'images/catalog/7.jpg',
+                            thumb: 'images/catalog/thumb7.jpg',
+                        },
+                        {
+                            src: 'images/catalog/8.jpg',
+                            thumb: 'images/catalog/thumb8.jpg',
+                            title: 'Get our newsletter',
+                        },
+                    ],
+                });
+            });
+        </script>
+    </head>
+
+    <body>
+        <div id="container"></div>
+    </body>
+</html>

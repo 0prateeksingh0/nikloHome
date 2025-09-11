@@ -1,0 +1,910 @@
+IMPORTANT: For plugin to work, License activation is required at https://verify.real3dflipbook.net/
+
+UPDATING THE PLUGIN
+
+1. Redownload the plugin from Codecanyon to get the latest version
+2. Copy folders js, css and assets from folder deploy to your server
+
+=================
+version 4.12
+date 12.7.2025.
+=================
+* Fix: Page resolution for PDF Flipbook
+* Fix: Page rendering issues for PDF flipbook caused by wrong path to cmaps
+
+=================
+version 4.11.2
+date 11.6.2025.
+=================
+* Fix: Toggle single page / double page in view modes 3d & 2d
+
+=================
+version 4.11
+date 7.6.2025.
+=================
+* Fix: No cover in right to left mode
+* Fix: Thumbnails view close button
+* Improvement: Page loading optimizations
+
+=================
+version 4.10.3
+date 23.5.2025.
+=================
+* Fix: Fullscreen on iOS
+* Fix: Bug with stopping youtube videos on pages
+* Improvement: Prevent website pinch zoom when flipbook is fullscreen or lightbox 
+* Improvement: Prevent auto hiding address bar on iOS when flipbook is fullscreen or lightbox 
+
+=================
+version 4.10.2
+date 22.5.2025.
+=================
+* Fix: Flipbook not loading on mobile
+
+=================
+version 4.10.1
+date 22.5.2025.
+=================
+* Fix: Youtube not stopping after lightbox close
+* Fix: Size of share buttons
+* Fix: Tooltip color and position
+* Improvement: Border for toolbar and popups
+* Improvement: Sharper shadow for WebGL mode
+* Improvement: Rendering performance
+
+=================
+version 4.10
+date 15.5.2025.
+=================
+* Improvement: Faster page loading
+* Improvement: Rendering performance
+* Improvement: PDF auto links detects links without www, http, https 
+* Improvement: PDF text search performance 
+
+=================
+version 4.9.6
+date 5.5.2025.
+=================
+* Improvement: Pause background music when video or audio on the page starts to play
+* Fix: Pages cut off in view modes "3d" and "2d"
+* Fix: Logo image covering the book
+
+=================
+version 4.9.5
+date 1.5.2025.
+=================
+* Fix: Button Toggle Fullscreen
+* Fix: Added missing translations
+
+=================
+version 4.9.2
+date 26.3.2025.
+=================
+* Fix: Zoom Pan in mode webgl
+
+=================
+version 4.9.1
+date 20.3.2025.
+=================
+* Fix: Text rendering on RTL websites
+
+=================
+version 4.9
+date 19.12.2024.
+=================
+* New: Share copy link
+* New: scaleCover option cover for "webgl" mode - make double with cover flipbook from pages that are all same size 
+* New: page caption - if page has caption, the icon for view the caption will be displayed on the page 
+* Fix: Thumbail size in grid view
+* Fix: Prevent mouse zoom when flipbook is in iframe and not fullscreen
+* Fix: Lightbox start page
+* Fix: Page items z index
+* Fix: Page elements when auto detect PDF links
+
+=================
+version 4.8
+date 23.10.2024.
+=================
+* Fix: Menu button Tools not visible in Firefox
+* Fix: PDF flipbook with 2 pages
+* Improvement: Table of Contents styling
+
+=================
+version 4.7.3
+date 26.9.2024.
+=================
+* Fix: Lightbox start page in Right to left mode
+
+=================
+version 4.7.2
+date 23.9.2024.
+=================
+* Fix: Button "Toggle single page"
+
+=================
+version 4.7.1
+date 19.9.2024.
+=================
+* Fix: Last page PDF flipbook
+
+=================
+version 4.7
+date 19.9.2024.
+=================
+* New: Toggle Single page / Double page for view mode "3d" and "2d"
+* New: Removed jQuery dependency
+* Improvement: Text search
+* Fix: Single page view
+* Fix: Lightbox start page
+
+=================
+version 4.6.7
+date 9.8.2024.
+=================
+* New: Option "searchResultsThumbs"
+* Improvement: Memory usage optimization
+
+=================
+version 4.6.6
+date 1.8.2024.
+=================
+* Fix: PDF flipbook page loading
+
+=================
+version 4.6.5
+date 30.07.2024.
+=================
+* New: method destroy() added to flipbook opject
+* Fix: pdfAutoLinks option that automatically finds links in PDF text and converts it to hyperlinks
+
+=================
+version 4.6.4
+date 04.07.2024.
+=================
+
+* IMPORTANT: For plugin to work License activation is required at https://verify.real3dflipbook.net/
+* New: Option to open PDF links in spotlight / lightbox (General > Page Links Target)
+* Fix: PDF flipbook not loading when RequireJS is used on the page
+* Fix: Toggle fullscreen icon does not change on iOS
+* Fix: Video does not pause in view mode "scroll" when scrolled page goes outside of view
+* Fix: Single page mode can flip beyond last page
+* Improvement: Optimized script loading
+* Fix: Table of Contents from PDF outline
+* Improvement: Updated to PDF.js 3.11.174
+* Improvement: Text selection for PDF flipbooks enabled by default
+* Fix: Double click zoom
+* Fix: Flip pages with touch swipe
+* Improvement: Share menu moved next to Share Button
+* New: Tools menu button, with submenu
+* Fix: Audio and video elements not visible if autoplay disabled
+* New: Resize flipbook container to fit double page flipbook on desktop and single page flipbook on mobile
+* Fix: Stopping iframes after page flip in view mode 3d, 2d, simple
+* New: Tooltip for toolbar
+* Other bug fixes
+* Performance improvements
+
+=================
+version 3.71
+date 02.04.2024.
+=================
+- new - option thumbStyle: "overlay" - default thumbnails view in overlay, alternative is thumbStyle: "side"
+- improvement - navigation arrows redesign
+- new - options for styling navigation arrows: arrowColor, arrowColorHover, arrowBackground, arrowBackgroundHover, arrowSize, arrowRadius, arrowMargin, arrowPadding, arrowTextShadow, arrowBorder
+
+=================
+version 3.65
+date 15.03.2024.
+=================
+- new - option previewPages, used to show only first x number of pages in the flipbook
+- fix - scrollbar on Table of Contents and Thumbnails
+- fix - video item autoplay on iOS
+
+=================
+version 3.64
+date 10.03.2024.
+=================
+- fix - Table of Contents from PDF outline
+- improvement - code optimizations
+
+=================
+version 3.63
+date 08.03.2024.
+=================
+- fix - pinch zoom on mobile
+- fix - flipbook zooms when fast clicking on navigation arrows
+- fix - missing button for removing bookmarked page
+
+=================
+version 3.62
+date 05.03.2024.
+=================
+- fix - button for deleting bookmarked page
+
+=================
+version 3.60
+date 28.02.2024.
+=================
+- fix - left page not visible on iOS, when using mode 3d or 2d
+- fix - htmlContent and page items not working in PDF flipbook
+
+=================
+version 3.59
+date 27.02.2024.
+=================
+- fix - single page mode when odd number of pages
+- fix - 2d mode blurry pages when flipbook is small
+- fix - right to left mode when book has one page
+
+=================
+version 3.58
+date 23.02.2024.
+=================
+- fix - Table of Contents from PDF, page numbers
+- fix - prevent page flip after pinch zoom
+- fix - prevent double click zoom during page flip
+- fix - flipping pages with arrows in mode 3D 
+- fix - printing flipbook pages when flipbook has no front cover
+
+=================
+version 3.53
+date 23.1.2023.  
+=================
+- fix - hover color for floating menu button
+- new - spotlight page item - rectangle click area that opens image / video / youtube in spotlight
+- new - example page-item-spotlight.html 
+
+=================
+version 3.52
+date 16.1.2023.  
+=================
+- fix - hover color for menu buttons
+- fix - table of contents sub items
+- fix - page click and drag on mobile
+- improvement - updated share icon
+- improvement - updated jQuery version in examples to 3.6.3
+
+=================
+version 3.50
+date 27.12.2023.  
+=================
+- fix - lightbox open in fullscreen
+- improvement - icon font replaced with svg icons
+- bug fixes
+- performance improvements
+
+=================
+version 3.43
+date 27.10.2023.  
+=================
+- improvement - faster page loading in viewMode "webgl"
+- improvement - faster page loading for PDF flibpooks
+- fix - disable page scroll on mobile when lightbox is active
+- fix - disable page flip if another flipbook is in fullscreen or lightbox 
+
+=================
+version 3.42
+date 23.10.2023.  
+=================
+- new - spotlight feature - open image, mp4 or youtube in lightbox by clicking on page element
+- new - example spotlight_items.html
+- new - example page_items.html
+- improvement - disable flipbook when outside of viewport
+- fix - scroll mode first page loading
+
+=================
+version 3.41
+date 5.10.2023.  
+=================
+- improvement - performance optimizations for viewMode '3d'
+- improvement - enable page scroll for viewMode 'scroll'
+- fix - opening lightbox with deeplinking prefix
+
+=================
+version 3.40
+date 25.9.2023.  
+=================
+- new - viewMode "scroll", vertical scroll mode that works like tradiitonal PDF viewers
+- fix - minified scripts in deploy/js/libs folder
+
+=================
+version 3.39
+date 15.8.2023.  
+=================
+- fix - search results display
+- fix - swipe mode book resize
+- fix - click area for page flip in single page mode
+- improvement - examples moved to deploy/examples, js libraries moved to js/libs, flipbook.style.css renamed to flipbook.css 
+
+=================
+version 3.38
+date 7.6.2023.  
+=================
+- bug fixes
+- performance improvements
+
+=================
+version 3.37.1
+date 28.5.2023.  
+=================
+- fix - Table of Contents page numbers
+- new - GA4 support for Google Analytics
+- bug fixes
+- performance improvements
+
+
+=================
+version 3.35
+date 21.6.2022.  
+=================
+- fix - PDF Flipbook crashing on iOS
+- improvement - PDF Flipbook pages are converted to image and cached, webp used if available
+- new - added option Autoplay Loop
+- fix - disable zoom while page swipe - swipe mode
+- fix - lightbox close when click outside for "swipe" mode and 1 page flipbooks
+- fix - lightbox mode hide scrollbars without jumping to top of the page
+- fix - htmlContent not interactive in modes "swipe", "2d", "3d" for PDF flipbook
+
+
+=================
+version 3.34
+date 25.2.2022.  
+=================
+- fix - "3d" mode bug (flipbook not working if Single page mode is enabled)
+- new - option pdfAutoLinks - automatically create links from text in PDF (disabled by default)
+- new - option pdfLinkOpacity
+
+=================
+version 3.33
+date 14.1.2022.  
+=================
+- fix - print all pages (print PDF) in Safari
+- improvement - PDF search results
+
+=================
+version 3.32
+date 23.11.2021.  
+=================
+- new - link flash animation
+- new - options btnPaddingV, btnPaddingH 
+- fix - thumbnails position after opening bookmarks
+- fix - text search highlight color
+- fix - share on WhatsApp on desktop 
+- fix - webgl mode
+- fix - flip sound
+
+=================
+version 3.30
+date 17.11.2021.  
+=================
+- new - option backgroundMusic - URL of -mp3 file
+- new - option matchProtocol - if pdfUrl and image URL-s will automatically use the same protocol as  the page
+
+=================
+version 3.29
+date 11.11.2021.  
+=================
+- fix - responsive view - go to last page if no back cover
+- improvement - WebGL mode book thickness
+
+=================
+version 3.28
+date 4.11.2021.  
+=================
+- fix - go to last page when single page view and no back cover
+- fix - print pages - set images to be 100% width of the paper
+- new - share on Reddit, Digg, LinkedIn
+- improvement - Font Awesome and Material icons replaced with custom icon set for faster loading
+
+=================
+version 3.27
+date 24.10.2021.  
+=================
+- fix - improved flipbook loading time by loading only icons that are used instead of entire icon font
+- fix - conflict if website is using another version of Font Awesome
+- fix - faster page loading
+
+=================
+version 3.26
+date 23.10.2021.  
+=================
+- fix - js error on mobile
+- new - option "cover" [Boolean] - disable to displaying only inner pages (1-2, 3-4, ...) 
+- new - option "pdfTextLayer" [Boolean] - if text layer will be rendered, disable for faster page load, enable for text selection and text search
+
+=================
+version 3.25
+date 8.10.2021.  
+=================
+- new - responsiveViewRatio - enable responsive view only if screen ratio is lower than options. responsiveViewRatio, default: 1
+- new - custom page numbering with pageNumberOffset and page numbers from page.title
+- new - logoUrlTarget
+- fix - ToC page numbering
+- fix - logo link opens two tabs
+
+=================
+version 3.24  
+date 24.9.2021.  
+=================
+- new - more optimized page loading
+- new - start loading Flipbook only after flipbook becomes visible on the screen
+- fix - flipbook working with tabs
+- fix - Flipbook crashing in Safari 15
+- new - option disableRange (disable range requests, default: false)
+- new - option pdfBase64 - create flipbook from base64 encoded PDF
+
+=================
+version 3.23  
+date 3.9.2021.  
+=================
+- fix - htmlContent absolute position right and bottom
+- fix - option cMapUrl - path to cmaps folder from options
+
+=================
+version 3.22  
+date 6.7.2021.  
+=================
+-fix - print PDF
+-fix - removed Share on Google plus
+-new - share on WhatsApp
+
+=================
+version 3.20  
+date 7.6.2021.  
+=================
+-fix - dynamic script loading paths
+
+
+=================
+version 3.18  
+date 5.3.2021.  
+=================
+-fix - print single page
+-fix - lightbox click sometimes not opening the flipbook
+-fix - some PDF rendering issues fixed by updating pdf.js
+-fix - scrolling to top after closing lightbox
+-fix - elements covering fullscreen flipbook on iOS
+
+
+=================
+version 3.17  
+date 1.6.2020.  
+=================
+-fix - responsive view flip to last page, current page number
+-fix - 3d mode rtl odd pages fix
+-fix - text search for JSON pages
+-fix - flip sound on first page flip
+-new - password protected PDF - prompt ask for password
+
+=================
+version 3.16.1  
+date 14.5.2020.  
+=================
+-fix - PDF links
+-new - events dispatched by window - r3d-pagechange, r3d-lightboxopen, r3d-lightboxclose
+
+=================
+version 3.16  
+date 11.5.2020.  
+=================
+-fix - PDF search multiple words
+-fix - toggle icons
+-fix - icons hover color
+-fix - freezing in WebGL mode when Deep Linking is active
+-new - close lightbox with back button
+-fix - table of content from PDF
+-new - move book with arrows when zoomed
+-fix - PDF search performance 
+
+=================
+version 3.14  
+date 23.4.2020.  
+=================
+-fix - disable text selection if select tool is not active
+-new - option rightClickEnabled for disabling right click menu on book
+-new - option touchSwipeEnabled to disable page turn with swipe gesture
+
+=================
+version 3.13  
+date 4.4.2020.  
+=================
+-fix - 2d & 3d & swipe mode bug when deep linking is enabled
+-fix - go to page for 1 page view in mode webgl
+-fix - HTML content for mode 3d & 2d
+-fix - lightbox close with ESC
+
+=================
+version 3.12  
+date 28.3.2020.  
+=================
+-fix - 3d mode odd number of pages
+-fix - HTML content
+-fix - one page flipbook landscape mode
+
+=================
+version 3.12.2  
+=================
+-new - new event "page change" for google analytics 
+-fix - HMTL content in mode "3d" and "2d" showing only on first two pages
+
+=================
+version 3.12.1  
+date 27.3.2020.  
+=================
+-fix - lightbox close with ESC
+
+=================
+version 3.11  
+date 28.2.2020.  
+=================
+-new - override flipbook options via url params, param begins with "r3d-", example r3d-viewMode=swipe
+-new - RTL layout for Table of Contents
+-new - option "searchOnStart" - open search on start, default: false
+-new - option "lightboxBackgroundColor" - color of lightbox background, CSS value
+-new - option "lightboxBackgroundPattern" - url of lightbox background image, repeated, CSS value
+-new - option "lightboxBackgroundImage" - url of lightbox background image, CSS value
+-new - option "pageTextureSizeMobile" - PDF page texture size on mobile, full size
+-new - option "pageTextureSizeMobileSmall" - PDF page texture size on mobile, small size
+-new - default value for option "pageTextureSizeSmall" changed to 1500
+-fix - single page mode and RTL
+-fix - Table of Content from PDF outline
+-fix - PDF search multiple words at once
+-fix - prevent multiple lightbox flip books open at once
+-fix - page scrolling to top for lightbox flipbook
+
+update 3.10.8
+-fix - page scrolling to top when lightbox close
+-fix - PDF search - highlighting separate words instead of search term 
+-fix - PDF outline (Table of Content) not working
+-fix - RTL mode bugs
+
+update 3.10.1
+-fix - swipe mode on iOS
+
+update 3.10
+-fix - font-awesome icons for share buttons
+
+update 3.9.9
+-support for hotspots on pages, usage example deploy/hotspots.html
+
+update 3.9.5
+-option lightboxShowMenu - show menu while loghtbox is loading - to be able to close loghtbox before it loads
+-bug fixes
+
+update 3.9
+-bug fixes
+-performance improvements
+
+update 3.8
+-bug fix - PDF flipbook in IE 11
+-bug fix - PDF links not working in swipe mode
+
+update 3.7.21
+-new option minimumAndroidVersion for WebGL, default : 6
+
+update 3.7.20
+-new option zoomMax2 - defines maximum zoom level
+-new option autoplayLoop - if book will stop on last page or loop
+
+update 3.7.9
+-bug fix - preloader not hiding
+-new - option "layout" for UI - available layouts 1-4
+-new - skin "gradient"
+-new - example html-s for layouts and skins
+
+update 3.7.8
+-bug fix - preloader not hiding
+-new - added example book_shelf.html with 3 book shelf styles - wood, glass and metal
+
+update 3.7.7
+-updated documentation
+
+update 3.7.5
+-bug fixes
+-new - more options for UI customisation - top menu bar, floating menu bar, position buttons left, right or center, top or bottom, button order
+
+update 3.7.1
+-new - open lightbox flipbook to specific page via deep linking (url hash)
+
+update 3.7
+-bug fix - crashing of pdf flip book on iOS 12
+-improvement -  performance and page loading time of pdf flip book
+
+update 3.6.14
+-bug fix - right to left mode - thumbnails and table of content reversed
+-bug fix - share via email - url from options
+-updated to latest version of three.js
+
+update 3.6.12
+-bug fix - pdf loading time - loading outlines at init
+-bug fix - single page mode resizing
+
+update 3.6.8
+-bug fix - pdf loading time
+
+update 3.6.4
+-bug fix - fullscreen
+
+update 3.6.1
+-bug fix - text search, text selection
+
+update 3.6.0
+
+-option lightboxStartPage
+-bug fixes
+-added event "pagechange"
+-added option "googleanalyticsTrackingCode"
+
+update 3.5.9
+
+-better image quality
+
+-new option wheelDisabledNotFullscreen - disables wheel action when flip book is not fullscreen:
+
+-new option arrowsDisabledNotFullscreen - disables keyboard arrows action when flip book is not fullscreen
+
+update 3.5.8
+
+-blurry pages fix
+
+-single page pdf - aspect ratio fix
+
+- bug fix - single page mode and deep linking 
+
+update 3.5
+
+-bug fixes
+
+-match protocol for resources to prevent cross origin errors caused by different protocol
+
+-multi level table of content
+
+-support for embedded PDF outline
+
+update 3.4.17
+
+- fix - double tap zoom
+
+update v 3.4.13
+
+- fix - Chinese characters bug
+
+update v 3.4.11
+
+- fix - lightbox right to left 3d, 2d, swipe
+
+update v 3.4.8 
+
+-bug fix - pdf text search
+-bug fix - lightbox close on click outside the book
+-bug fix - lightboxMarginV, lighboxMarginH
+-bug fix - webgl - lightboxCloseOnClick
+- new - options.strings - for translate
+
+update v 3.4.7
+
+-bug fix - font-awesome svg version toggle icons
+
+update v 3.4.6
+
+-bug fix - font-awesome svg version
+
+-new option "sideMenuOverBook" - open side menu over book or next to book
+-options "singlePage", "responsivežview", "responsiveViewTreshold" added for swipe mode
+
+
+
+update v 3.4.5
+
+-added option "doubleClickZoomDisabled"
+
+
+
+update v 3.4
+
+-new - pdf text search - example textSearch.html
+-new - pdf selectable text - example selectableText.html
+
+update v 3.3
+-new viewMode "swipe" - example swipe_mode.html
+
+
+update v 3.2
+-added page shadows for webgl
+-new light and shadow options
+
+update v 3.1
+- fix - scrollbar for table of content and thumbnails
+- fix - allow page scroll on mobile for mode "3d" and "2d"
+- fix - last page pdf not displaying
+- fix - side buttons options
+- updated to latest FontAwesome icons
+
+update v 3.0
+- responsive view for "3d" and "2d" modes
+- page shadow for "3d" and "2d" modes
+- improved stability on mobile 
+- choose different view mode for mobile
+- page resolution is 2048px by default
+- fix - lightbox fullscreen
+- fix - more pages are cached on desktop
+- fix - responsive view right to left
+- fix - zoom to mouse position for "3d" and "2d"
+
+update 2.40
+-fix for printing PDF
+-bug fixes
+-performance improvements
+
+update 2.38
+- fix for mouse wheel zoom in firefox and IE11
+- fix for page scroll on mobile
+
+update 2.35
+- performance improvements
+- fix - inner page shadow
+
+update 2.30
+- fix - crashing on mobile after flipping number of pages
+
+update 2.28
+- new - menu position over book or below book (default)
+- new - options for current page display
+- new - options for responsive view
+- other minor bug fixes
+
+update 2.25
+- bug fix for double page pdf
+- bug fix for go to specific page
+- new options for customizing the UI
+
+update 2.22
+- new - responsive webgl mode - single or double page view depending on screen size
+- new - autoplay feature
+- new - browser fullscreen when real fullscreen is not supported
+- new - current page display
+- fix - webgl mode performance optimization
+- fix - better resolution of pdf pages
+- fix - pdf page loading speed
+
+update 2.22.1
+-fix for pdf files that are double page with cover
+
+update 2.20
+-fix for share button on mobile
+-single page view in portrait screen size
+-pdf image quality improved for mobile and for double page pdfs
+
+update v2.18
+-pdf links open in new tab
+-reduced script sizes
+
+update 24.5.2016. v2.17
+-improved page image quality
+-improved performance
+-new - option transparent background
+-new - book middle shadow - adjustable width and color
+-new - option antialiasing
+-fixed - option lightbox opening in fullscreen
+
+update 1.3.2016. 2.13 
+-deeplinking and lightbox - if linked to page 1 the lightbox will open
+-added support for internal links in pdf (for table of content)
+
+update 26.2.2016 version 2.12
+-added support for links inside PDF
+-improved loading speed of PDF pages
+-html content on pages working in mode "webgl"
+-fix for scrollbars missing in 3d mode
+-menu z-index fix
+-pdf rendering improvements
+-fix for single page mode (thumbnails and contents was opening the wrong page on click)
+
+update 30.11.2015. version 2.9.6
+- added option "btnDownloadPdf.openInNewWindow" - opens the pdf in new browser window
+- fixed bug for first page on mobile
+- fixed javascript error with "$" instead of "jQuery"
+
+update 6.11.2015. version 2.9.3
+- fix for table of content bug
+- fix for current page disabled bug
+
+update 28.10.2015. version 2.9
+-new - pdf flipbook (flibook from pdf url) - pdf scales with book zoom, pages are sharp at all scales
+-fix - html content on pages - click event was not working
+-fix - bug that lightbox always starts on page load
+
+update 19.10.2015. version 2.8.1.1
+-fix for css bug caused by 2.8.1
+
+update 18.10.2015. version 2.8.1
+-change to "view all pages" and "table of content" views
+
+update 8.10.2015. version 2.8.0.2
+-fix for lightbox opening on page load
+-fix for deeplinking
+
+update 7.10.2015. version 2.8
+-fix for 2 page and 3 page PDF flipbook and JPG flipbook
+-fix for PDF files that have double page with single page cover
+-fix for deeplinking
+-improved performance for 3D and 2D mode for mobile devices
+-many other minor bug fixes 
+
+update 4.8.2015. version 2.6.6
+fix - performance improvement for css3d mode
+fix - image quality of jpg pages and pdf pages
+fix - 2d mode css bug (fallback for IE9)
+
+update 10.7.2015. version 2.6.1
+fix - lightbox mode bug 
+new - option to hide bottom menu bar
+fix - html content css
+fix - bug with html content click handler
+
+update 10.7.2015. version 2.6
+new - page mode "doubleWithCover"- first and last pages are single pages, other pages are spreads
+fix - bugs in css3d mode on mobile
+fix - bug on mobile where playing flip sound was crashing the app
+fix - bugs with extra pages added at the end of the book
+fix - optimized pdf flipbook loading time and performance
+
+update 22.6.2015. version 2.5
+new - option to change texture size for webgl mode
+new - page shadow for webgl mode
+fix - improved page quality and performance in webgl mode by adding anisotropic texture filtering and changing texture site to power of two
+
+update 2.6.2015. version 2.3.2
+fix - loading of plugin scripts bug
+
+update 2.6.2015. version 2.3.1
+new - option to enable/disable book rotation with click and drag (webgl mode)
+new - option to enable/disable book rotation on mouse move (webgl mode)
+new - set maximum and minimum pan and tilt angles for book rotation
+new - current page display moved to bottom bar
+fix - page turn on click
+fix - page scroll when zoomed in IE, in CSS3D mode
+
+update 2.6.2015. version 2.1
+new - webgl mode - page bends while dragging
+new - more realistic flip animation
+new - disable web page zoom 
+new - add HTML content on pages
+new - book pan and tilt for css3d mode
+new - book shadow for css3d mode
+fix - css3d mode perspective
+fix - fullscreen for safari
+
+update 11.5.2015. version 1.6
+new - share system - pinterest, facebook, twitter, google plus, email
+new - enable / disable navigation buttons for first and last page
+
+update 11.5.2015. version 1.5.0.1
+fix for safari on windows
+fix for page flip duration
+fix for single page mode mobile
+fix for going to page(pdf flipbook)
+new - mobile settings - enable / disable buttons
+new - set book pan and tilt angles for 3d mode
+
+update 7.5.2015. version 1.5
+New - swipe to turn pages
+New - page drag
+New - 3d mode rewritten - with smooth CSS transformations and page shadows 
+New - single page mode - it can be used always or only on mobile devices
+New - optional side navigation arrows
+New - buttons for first and last page
+Fiexd - webgl mode - book resize in portrait mode
+Fiexd - webgl mode - book rotation disabled, click & drag now used to drag page
+Fiexd - book size does not depend on the pages resolution anymore, zoom value of 1 makes the book fit the container
+
+update 19.4.2015. 1.4.9
+Fixed - bug with multiple books in pdf mode
+Fixed - centering of the book for webgl mode
+Fixed - RTL for webgl mode
+
+update 12.4.2015. 1.4.8
+Fixed - bugs with zoom caused by recent updates
+Fixed - light intensity in WebGl mode
+Fixed - page resolution for pdf pages
+Fixed - bug if folder on the server contains string "flipbook"
+Fixed - scrollbars on table of content and thumbnails

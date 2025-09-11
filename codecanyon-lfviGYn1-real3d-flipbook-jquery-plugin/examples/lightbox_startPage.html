@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" type="text/css" href="../src/css/flipbook.css" />
+        <script src="../src/js/flipbook.js"></script>
+        <script type="text/javascript">
+            document.addEventListener('DOMContentLoaded', function () {
+                var container = document.getElementById('container');
+                var options = {
+                    pdfUrl: 'pdf/book.pdf',
+                    lightBox: true,
+                    startPage: Number(container.dataset.startpage),
+                };
+                var flipbook = new FlipBook(container, options);
+            });
+        </script>
+    </head>
+
+    <body>
+        <img id="container" data-startpage="2" src="assets/images/catalog/thumb1.jpg" />
+    </body>
+</html>

@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" type="text/css" href="../src/css/flipbook.css" />
+        <script src="../src/js/flipbook.js"></script>
+        <script type="text/javascript">
+            document.addEventListener('DOMContentLoaded', function () {
+                var container = document.getElementById('container');
+                var options = {
+                    pages: [
+                        {
+                            src: 'images/catalog/1.jpg',
+                            thumb: 'images/catalog/1.jpg',
+                            title: 'Cover',
+                        },
+                        {
+                            src: 'images/catalog/2.jpg',
+                            thumb: 'images/catalog/thumb2.jpg',
+                            title: 'Content',
+                        },
+                        {
+                            src: 'images/catalog/3.jpg',
+                            thumb: 'images/catalog/thumb3.jpg',
+                            title: 'Welcome',
+                        },
+                        {
+                            src: 'images/catalog/4.jpg',
+                            thumb: 'images/catalog/thumb4.jpg',
+                            title: 'Design with attitude',
+                        },
+                        {
+                            src: 'images/catalog/5.jpg',
+                            thumb: 'images/catalog/thumb5.jpg',
+                        },
+                        {
+                            src: 'images/catalog/6.jpg',
+                            thumb: 'images/catalog/thumb6.jpg',
+                            title: 'New Arrivals',
+                        },
+                        {
+                            src: 'images/catalog/7.jpg',
+                            thumb: 'images/catalog/thumb7.jpg',
+                        },
+                        {
+                            src: 'images/catalog/8.jpg',
+                            thumb: 'images/catalog/thumb8.jpg',
+                            title: 'Get our newsletter',
+                        },
+                    ],
+                    layout: 4,
+                };
+                var flipbook = new FlipBook(container, options);
+            });
+        </script>
+    </head>
+
+    <body>
+        <h3>UI layout 3</h3>
+        <div id="container"></div>
+    </body>
+</html>

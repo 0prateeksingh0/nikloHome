@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <link rel="stylesheet" href="../build/css/flipbook.min.css">
+
+        <script
+            src="https://code.jquery.com/jquery-3.6.3.js"
+            integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
+            crossorigin="anonymous"
+        ></script>
+
+        <script src="../build/js/flipbook.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('#container').flipBook({
+                    pdfUrl: 'pdf/book.pdf',
+                    strings: {
+                        print: 'Print',
+                        printLeftPage: 'Print left page',
+                        printRightPage: 'Print right page',
+                        printCurrentPage: 'Print current page',
+                        printAllPages: 'Print all pages',
+
+                        download: 'Download',
+                        downloadLeftPage: 'Download left page',
+                        downloadRightPage: 'Download right page',
+                        downloadCurrentPage: 'Download current page',
+                        downloadAllPages: 'Download all pages',
+
+                        bookmarks: 'Bookmarks',
+                        bookmarkLeftPage: 'Bookmark left page',
+                        bookmarkRightPage: 'Bookmark right page',
+                        bookmarkCurrentPage: 'Bookmark current page',
+
+                        search: 'Search',
+                        findInDocument: 'Find in document',
+                        pagesFoundContaining: 'pages found containing',
+
+                        thumbnails: 'Thumbnails',
+                        tableOfContent: 'Table of content',
+                        share: 'Share',
+
+                        pressEscToClose: 'Press ESC to close',
+                    },
+                });
+            });
+        </script>
+    </head>
+
+    <body>
+        <div id="container"></div>
+    </body>
+</html>

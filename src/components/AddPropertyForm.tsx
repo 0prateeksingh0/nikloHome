@@ -15,7 +15,8 @@ const AddPropertyForm: React.FC<AddPropertyFormProps> = ({ onSuccess, onCancel, 
   const [formData, setFormData] = useState<CreatePropertyData>({
     name: '',
     location: '',
-    brochure: '',
+    description: '',
+    brochureUrl: '',
     image: '',
     model3d: '',
     availableApartments: 0,
@@ -26,10 +27,10 @@ const AddPropertyForm: React.FC<AddPropertyFormProps> = ({ onSuccess, onCancel, 
   const [uploadingFiles, setUploadingFiles] = useState({
     image: false,
     model3d: false,
-    brochure: false
+    brochureUrl: false
   });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
@@ -37,7 +38,7 @@ const AddPropertyForm: React.FC<AddPropertyFormProps> = ({ onSuccess, onCancel, 
     }));
   };
 
-  const handleFileUpload = async (file: File, type: 'image' | 'model3d' | 'brochure') => {
+  const handleFileUpload = async (file: File, type: 'image' | 'model3d' | 'brochureUrl') => {
     if (!file) return;
 
     setUploadingFiles(prev => ({ ...prev, [type]: true }));
@@ -52,7 +53,7 @@ const AddPropertyForm: React.FC<AddPropertyFormProps> = ({ onSuccess, onCancel, 
         case 'model3d':
           url = await uploadService.uploadModel(file);
           break;
-        case 'brochure':
+        case 'brochureUrl':
           url = await uploadService.uploadBrochure(file);
           break;
         default:
@@ -168,6 +169,21 @@ const AddPropertyForm: React.FC<AddPropertyFormProps> = ({ onSuccess, onCancel, 
             </div>
           </div>
 
+          {/* Description */}
+          <div>
+            <label className="block text-sm font-semibold text-gray-700 mb-2">
+              Description <span className="text-gray-500 font-normal">(Optional)</span>
+            </label>
+            <textarea
+              name="description"
+              value={formData.description}
+              onChange={handleChange}
+              rows={3}
+              className="block w-full px-3 py-3 border border-gray-300 rounded-lg text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-all duration-200 bg-white shadow-sm resize-none"
+              placeholder="Enter property description"
+            />
+          </div>
+
           {/* File Uploads */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div>
@@ -210,7 +226,7 @@ const AddPropertyForm: React.FC<AddPropertyFormProps> = ({ onSuccess, onCancel, 
                   accept=".pdf"
                   onChange={(e) => {
                     const file = e.target.files?.[0];
-                    if (file) handleFileUpload(file, 'brochure');
+                    if (file) handleFileUpload(file, 'brochureUrl');
                   }}
                   className="hidden"
                   id="brochure-upload"
@@ -221,10 +237,10 @@ const AddPropertyForm: React.FC<AddPropertyFormProps> = ({ onSuccess, onCancel, 
                   </svg>
                   <p className="text-sm text-gray-600">Click to upload PDF</p>
                 </label>
-                {uploadingFiles.brochure && (
+                {uploadingFiles.brochureUrl && (
                   <p className="text-blue-500 text-sm mt-2">Uploading brochure...</p>
                 )}
-                {formData.brochure && (
+                {formData.brochureUrl && (
                   <p className="text-green-500 text-sm mt-2">✓ Brochure uploaded successfully</p>
                 )}
               </div>
@@ -318,7 +334,7 @@ const AddPropertyForm: React.FC<AddPropertyFormProps> = ({ onSuccess, onCancel, 
           <div className="flex space-x-4 pt-6 border-t border-gray-200">
             <button
               type="submit"
-              disabled={isLoading || uploadingFiles.image || uploadingFiles.model3d || uploadingFiles.brochure}
+              disabled={isLoading || uploadingFiles.image || uploadingFiles.model3d || uploadingFiles.brochureUrl}
               className="flex-1 flex items-center justify-center py-3 px-4 border border-transparent text-sm font-semibold rounded-lg text-white bg-primary hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
             >
               {isLoading ? (

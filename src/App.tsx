@@ -6,6 +6,9 @@ import Location from './components/Location';
 import Footer from './components/Footer';
 import VillaPage from './components/VillaPage';
 import ContactPage from './components/ContactPage';
+import BrochureViewer from './pages/BrochureViewer';
+import FlipbookTest from './pages/FlipbookTest';
+import TestBrochure from './pages/TestBrochure';
 import AdminLogin from './pages/AdminLogin';
 import AdminDashboard from './pages/AdminDashboard';
 import { LanguageProvider } from './contexts/LanguageContext';
@@ -17,6 +20,9 @@ function App() {
       <AuthProvider>
         <LanguageProvider>
           <Routes>
+            {/* Brochure Viewer - Full Screen */}
+            <Route path="/brochure/:id" element={<BrochureViewer />} />
+            
             {/* Public Routes */}
             <Route path="/*" element={
               <div className="min-h-screen bg-white">
@@ -30,6 +36,8 @@ function App() {
                     </>
                   } />
                   <Route path="/villa/:slug" element={<VillaPage />} />
+                  <Route path="/flipbook-test" element={<FlipbookTest />} />
+                  <Route path="/test-brochure" element={<TestBrochure />} />
                   <Route path="/contact" element={<ContactPage />} />
                 </Routes>
                 <Footer />

@@ -10,9 +10,14 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@react-three/drei": "^10.7.5",
+    "@react-three/fiber": "^9.3.0",
     "@tailwindcss/vite": "^4.1.12",
+    "@types/jquery": "^3.5.33",
     "axios": "^1.6.2",
     "cloudinary": "^2.7.0",
+    "jquery": "^3.7.1",
+    "pdfjs-dist": "^5.4.149",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "react-pageflip": "^2.0.3",

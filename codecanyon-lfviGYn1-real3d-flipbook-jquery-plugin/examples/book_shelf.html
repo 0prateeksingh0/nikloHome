@@ -1,0 +1,132 @@
+<!doctype html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <link rel="stylesheet" href="../build/css/flipbook.min.css">
+
+        <!-- Removed jQuery script -->
+
+        <script src="../build/js/flipbook.min.js"></script>
+        <script type="text/javascript">
+            document.addEventListener('DOMContentLoaded', function () {
+                const options = {
+                    pages: [
+                        {
+                            src: 'images/catalog/1.jpg',
+                            thumb: 'images/catalog/1.jpg',
+                            title: 'Cover',
+                        },
+                        {
+                            src: 'images/catalog/2.jpg',
+                            thumb: 'images/catalog/thumb2.jpg',
+                            title: 'Content',
+                        },
+                        {
+                            src: 'images/catalog/3.jpg',
+                            thumb: 'images/catalog/thumb3.jpg',
+                            title: 'Welcome',
+                        },
+                        {
+                            src: 'images/catalog/4.jpg',
+                            thumb: 'images/catalog/thumb4.jpg',
+                            title: 'Design with attitude',
+                        },
+                        {
+                            src: 'images/catalog/5.jpg',
+                            thumb: 'images/catalog/thumb5.jpg',
+                        },
+                        {
+                            src: 'images/catalog/6.jpg',
+                            thumb: 'images/catalog/thumb6.jpg',
+                            title: 'New Arrivals',
+                        },
+                        {
+                            src: 'images/catalog/7.jpg',
+                            thumb: 'images/catalog/thumb7.jpg',
+                        },
+                        {
+                            src: 'images/catalog/8.jpg',
+                            thumb: 'images/catalog/thumb8.jpg',
+                            title: 'Get our newsletter',
+                        },
+                    ],
+                    lightBox: true,
+                };
+
+                const books = document.querySelectorAll('.thumb');
+                books.forEach(function (book) {
+                    book.addEventListener('click', function () {
+                        new FlipBook(book, options);
+                    });
+                });
+            });
+        </script>
+
+        <style>
+            .bookshelf .thumb {
+                display: inline-block;
+                cursor: pointer;
+                margin: 0 0.5%;
+                width: 15% !important;
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+                max-width: 100px;
+            }
+            .bookshelf .thumb img {
+                width: 100%;
+                display: block;
+                vertical-align: top;
+            }
+            .bookshelf .shelf-img {
+                z-index: 0;
+                height: auto;
+                max-width: 100%;
+                vertical-align: top;
+                margin-top: -12px;
+            }
+            .bookshelf .covers {
+                width: 100%;
+                height: auto;
+                z-index: 99;
+                position: relative;
+                text-align: center;
+            }
+            .bookshelf {
+                text-align: center;
+                padding: 0;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="bookshelf">
+            <div class="covers">
+                <div class="thumb book-1"><img src="images/catalog/thumb1.jpg" /></div>
+                <div class="thumb book-2"><img src="images/catalog/thumb1.jpg" /></div>
+                <div class="thumb book-3"><img src="images/catalog/thumb1.jpg" /></div>
+                <div class="thumb book-4"><img src="images/catalog/thumb1.jpg" /></div>
+                <div class="thumb book-4"><img src="images/catalog/thumb1.jpg" /></div>
+            </div>
+            <img class="shelf-img" src="images/shelf_wood.png" />
+        </div>
+
+        <div class="bookshelf">
+            <div class="covers">
+                <div class="thumb book-1"><img src="images/catalog/thumb1.jpg" /></div>
+                <div class="thumb book-2"><img src="images/catalog/thumb1.jpg" /></div>
+                <div class="thumb book-3"><img src="images/catalog/thumb1.jpg" /></div>
+            </div>
+            <img class="shelf-img" src="images/shelf_glass.png" />
+        </div>
+
+        <div class="bookshelf">
+            <div class="covers">
+                <div class="thumb book-1"><img src="images/catalog/thumb1.jpg" /></div>
+                <div class="thumb book-2"><img src="images/catalog/thumb1.jpg" /></div>
+                <div class="thumb book-3"><img src="images/catalog/thumb1.jpg" /></div>
+                <div class="thumb book-4"><img src="images/catalog/thumb1.jpg" /></div>
+            </div>
+            <img class="shelf-img" src="images/shelf_metal.png" />
+        </div>
+    </body>
+</html>
