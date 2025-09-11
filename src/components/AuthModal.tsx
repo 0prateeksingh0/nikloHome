@@ -29,7 +29,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
         <div className="pt-8 pb-6 px-6">
           <div className="text-center mb-6">
             <div className="flex justify-center mb-4">
-              <div className="w-16 h-16 bg-orange-500 rounded-full flex items-center justify-center shadow-lg">
+              <div className="w-16 h-16 bg-[#253747] rounded-full flex items-center justify-center shadow-lg">
                 <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
                 </svg>
@@ -77,7 +77,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
                   Don't have an account?{' '}
                   <button
                     onClick={() => setIsLogin(false)}
-                    className="font-semibold text-orange-500 hover:text-orange-600 transition-colors duration-200"
+                    className="font-semibold text-[#253747] hover:text-[#1a2a35] transition-colors duration-200"
                   >
                     Create one now
                   </button>
@@ -87,7 +87,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
                   Already have an account?{' '}
                   <button
                     onClick={() => setIsLogin(true)}
-                    className="font-semibold text-orange-500 hover:text-orange-600 transition-colors duration-200"
+                    className="font-semibold text-[#253747] hover:text-[#1a2a35] transition-colors duration-200"
                   >
                     Sign in here
                   </button>

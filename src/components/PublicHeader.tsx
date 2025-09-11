@@ -47,8 +47,8 @@ const PublicHeader: React.FC<PublicHeaderProps> = ({ variant = 'default' }) => {
   const textColor = isContactPage ? 'text-black' : (isScrolled ? 'text-gray-800' : 'text-white');
   const separatorColor = isContactPage ? 'bg-gray-300' : (isScrolled ? 'bg-gray-300' : 'bg-white/30');
   const borderColor = isContactPage ? 'border-gray-200' : (isScrolled ? 'border-gray-200' : 'border-white/20');
-  const navLinkColor = isContactPage ? 'text-black hover:text-[#2A3B49]' : (isScrolled ? 'text-gray-800 hover:text-[#2A3B49]' : 'text-white hover:text-[#2A3B49]');
-  const rightSideColor = isContactPage ? 'text-black hover:text-[#2A3B49]' : (isScrolled ? 'text-gray-700 hover:text-[#2A3B49]' : 'text-white hover:text-[#2A3B49]');
+  const navLinkColor = isContactPage ? 'text-black hover:text-[#253747]' : (isScrolled ? 'text-gray-800 hover:text-[#253747]' : 'text-white hover:text-[#253747]');
+  const rightSideColor = isContactPage ? 'text-black hover:text-[#253747]' : (isScrolled ? 'text-gray-700 hover:text-[#253747]' : 'text-white hover:text-[#253747]');
   const mobileMenuBg = isContactPage ? 'bg-white text-gray-800' : (isScrolled ? 'bg-white text-gray-800' : 'bg-black/90 text-white');
   const mobileMenuBorder = isContactPage ? 'border-gray-200' : (isScrolled ? 'border-gray-200' : 'border-white/20');
 
@@ -74,18 +74,18 @@ const PublicHeader: React.FC<PublicHeaderProps> = ({ variant = 'default' }) => {
                 <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 .12-.03.24-.06.36l-2.2 2.2z" />
               </svg>
               <span>
-                <a href="tel:02842145566" className="hover:text-[#2A3B49] transition-colors">0284 214 55 66</a>
+                <a href="tel:02842145566" className="hover:text-[#253747] transition-colors">0284 214 55 66</a>
                 <span className="mx-2">|</span>
-                <a href="tel:05327086515" className="hover:text-[#2A3B49] transition-colors">0532 708 65 15</a>
+                <a href="tel:05327086515" className="hover:text-[#253747] transition-colors">0532 708 65 15</a>
               </span>
             </div>
             
             {/* Center - Navigation Links */}
             <div className="hidden lg:flex items-center space-x-3 md:space-x-4">
-              <a href="#" className={`text-sm md:text-base font-medium transition-all duration-300 ${navLinkColor}`}>{t('nav.3dmap')}</a>
-              <a href="#" className={`text-sm md:text-base font-medium transition-all duration-300 ${navLinkColor}`}>{t('nav.stories')}</a>
-              <a href="#" className={`text-sm md:text-base font-medium transition-all duration-300 ${navLinkColor}`}>{t('nav.about')}</a>
-              <Link to="/contact" className={`text-sm md:text-base font-medium transition-all duration-300 ${navLinkColor}`}>{t('nav.contact')}</Link>
+              <a href="#" className={`text-sm md:text-base font-light transition-all duration-300 ${navLinkColor}`}>{t('nav.3dmap')}</a>
+              <a href="#" className={`text-sm md:text-base font-light transition-all duration-300 ${navLinkColor}`}>{t('nav.stories')}</a>
+              <a href="#" className={`text-sm md:text-base font-light transition-all duration-300 ${navLinkColor}`}>{t('nav.about')}</a>
+              <Link to="/contact" className={`text-sm md:text-base font-light transition-all duration-300 ${navLinkColor}`}>{t('nav.contact')}</Link>
             </div>
 
             {/* Right Side - Language, Search */}
@@ -115,7 +115,7 @@ const PublicHeader: React.FC<PublicHeaderProps> = ({ variant = 'default' }) => {
                           setIsLanguageDropdownOpen(false);
                         }}
                         className={`w-full flex items-center space-x-2 md:space-x-3 px-3 md:px-4 py-2 text-left hover:bg-gray-100 transition-colors ${
-                          language === lang.code ? 'bg-gray-50 text-[#2A3B49]' : 'text-gray-800'
+                          language === lang.code ? 'bg-gray-50 text-[#253747]' : 'text-gray-800'
                         }`}
                       >
                         <span className="text-base md:text-lg">{lang.flag}</span>
@@ -156,9 +156,9 @@ const PublicHeader: React.FC<PublicHeaderProps> = ({ variant = 'default' }) => {
                   <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 .12-.03.24-.06.36l-2.2 2.2z" />
                 </svg>
                 <span className="text-sm">
-                  <a href="tel:02842145566" className="hover:text-[#2A3B49] transition-colors">0284 214 55 66</a>
+                  <a href="tel:02842145566" className="hover:text-[#253747] transition-colors">0284 214 55 66</a>
                   <span className="mx-2">|</span>
-                  <a href="tel:05327086515" className="hover:text-[#2A3B49] transition-colors">0532 708 65 15</a>
+                  <a href="tel:05327086515" className="hover:text-[#253747] transition-colors">0532 708 65 15</a>
                 </span>
               </div>
               
@@ -177,7 +177,7 @@ const PublicHeader: React.FC<PublicHeaderProps> = ({ variant = 'default' }) => {
               {/* Mobile Language Selector */}
               <div className="pt-3 border-t border-gray-200">
                 <div className="mb-3">
-                  <span className="text-sm font-medium text-gray-600">Language:</span>
+                  <span className="text-sm font-light text-gray-600">Language:</span>
                 </div>
                 <div className="grid grid-cols-3 gap-2">
                   {languages.map((lang) => (
@@ -189,7 +189,7 @@ const PublicHeader: React.FC<PublicHeaderProps> = ({ variant = 'default' }) => {
                       }}
                       className={`flex items-center justify-center space-x-2 px-3 py-2 rounded-md text-sm transition-colors ${
                         language === lang.code 
-                          ? 'bg-[#2A3B49] text-white' 
+                          ? 'bg-[#253747] text-white' 
                           : 'bg-gray-100 text-gray-800 hover:bg-gray-200'
                       }`}
                     >

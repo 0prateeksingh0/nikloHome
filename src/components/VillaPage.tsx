@@ -59,7 +59,7 @@ const VillaPage: React.FC = () => {
           <p className="text-gray-600 mb-8">The villa you're looking for doesn't exist.</p>
           <a 
             href="/" 
-            className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-orange-500 hover:bg-orange-600 transition-colors"
+            className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-[#253747] hover:bg-[#1a2a35] transition-colors"
           >
             Return Home
           </a>
@@ -109,19 +109,19 @@ const VillaPage: React.FC = () => {
               <div className="grid grid-cols-2 gap-4">
                 <div className="flex justify-between">
                   <span className="text-gray-600">Bedrooms:</span>
-                  <span className="font-semibold">{villa.specifications.bedrooms}</span>
+                  <span className="font-light">{villa.specifications.bedrooms}</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-gray-600">Bathrooms:</span>
-                  <span className="font-semibold">{villa.specifications.bathrooms}</span>
+                  <span className="font-light">{villa.specifications.bathrooms}</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-gray-600">Area:</span>
-                  <span className="font-semibold">{villa.specifications.area}</span>
+                  <span className="font-light">{villa.specifications.area}</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-gray-600">Floors:</span>
-                  <span className="font-semibold">{villa.specifications.floors}</span>
+                  <span className="font-light">{villa.specifications.floors}</span>
                 </div>
               </div>
             </div>
@@ -133,7 +133,7 @@ const VillaPage: React.FC = () => {
             <div className="space-y-4">
               {villa.features.map((feature, index) => (
                 <div key={index} className="flex items-center">
-                  <svg className="w-5 h-5 text-orange-500 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <svg className="w-5 h-5 text-[#253747] mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                   </svg>
                   <span className="text-gray-700">{feature}</span>
@@ -143,7 +143,7 @@ const VillaPage: React.FC = () => {
 
             {/* Contact Button */}
             <div className="mt-8">
-              <button className="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold py-4 px-6 rounded-lg transition-colors duration-200 text-lg">
+              <button className="w-full bg-[#253747] hover:bg-[#1a2a35] text-white font-light py-4 px-6 rounded-lg transition-colors duration-200 text-lg">
                 Contact Us for More Information
               </button>
             </div>

@@ -49,12 +49,7 @@ const PropertyCard: React.FC<PropertyCardProps> = ({ property }) => {
             <img 
               src={currentProperty.image} 
               alt={currentProperty.name}
-              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 image-optimized"
-              style={{
-                imageRendering: 'auto'
-              }}
-              loading="lazy"
-              decoding="async"
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
             />
           ) : (
             <div className="w-full h-full bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center">

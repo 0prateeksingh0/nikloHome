@@ -68,7 +68,7 @@ const Login: React.FC<LoginProps> = ({ onToggleMode: _onToggleMode, onSuccess })
               type="email"
               autoComplete="email"
               required
-              className="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-all duration-200 bg-white shadow-sm"
+              className="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#253747] focus:border-[#253747] transition-all duration-200 bg-white shadow-sm"
               placeholder="Enter your email"
               value={formData.email}
               onChange={handleChange}
@@ -92,7 +92,7 @@ const Login: React.FC<LoginProps> = ({ onToggleMode: _onToggleMode, onSuccess })
               type="password"
               autoComplete="current-password"
               required
-              className="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-all duration-200 bg-white shadow-sm"
+              className="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#253747] focus:border-[#253747] transition-all duration-200 bg-white shadow-sm"
               placeholder="Enter your password"
               value={formData.password}
               onChange={handleChange}
@@ -105,7 +105,7 @@ const Login: React.FC<LoginProps> = ({ onToggleMode: _onToggleMode, onSuccess })
         <button
           type="submit"
           disabled={isLoading}
-          className="group relative w-full flex justify-center items-center py-3 px-4 border border-transparent text-sm font-semibold rounded-lg text-white bg-orange-500 hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+          className="group relative w-full flex justify-center items-center py-3 px-4 border border-transparent text-sm font-semibold rounded-lg text-white bg-[#253747] hover:bg-[#1a2a35] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#253747] disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
         >
           {isLoading ? (
             <>

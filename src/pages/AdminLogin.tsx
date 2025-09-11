@@ -39,7 +39,7 @@ const AdminLogin: React.FC = () => {
         {/* Header */}
         <div className="text-center">
           <div className="flex justify-center mb-6">
-            <div className="w-20 h-20 bg-[#2A3B49] rounded-full flex items-center justify-center shadow-lg">
+            <div className="w-20 h-20 bg-[#253747] rounded-full flex items-center justify-center shadow-lg">
               <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
               </svg>
@@ -93,7 +93,7 @@ const AdminLogin: React.FC = () => {
                 setIsLogin(!isLogin);
                 setError(null);
               }}
-              className="ml-1 font-medium text-[#2A3B49] hover:text-[#1e2a35] transition-colors"
+              className="ml-1 font-medium text-[#253747] hover:text-[#1a2a35] transition-colors"
             >
               {isLogin ? 'Register here' : 'Sign in here'}
             </button>

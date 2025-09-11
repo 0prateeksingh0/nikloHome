@@ -127,7 +127,7 @@ const AdminDashboard: React.FC = () => {
                   placeholder="Search properties..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2A3B49] focus:border-[#2A3B49]"
+                  className="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#253747] focus:border-[#253747]"
                 />
                 <svg
                   className="absolute left-3 top-2.5 h-5 w-5 text-gray-400"
@@ -143,7 +143,7 @@ const AdminDashboard: React.FC = () => {
               <select
                 value={statusFilter}
                 onChange={(e) => setStatusFilter(e.target.value)}
-                className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2A3B49] focus:border-[#2A3B49]"
+                className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#253747] focus:border-[#253747]"
               >
                 <option value="all">All Status</option>
                 <option value="available">Available</option>
@@ -155,7 +155,7 @@ const AdminDashboard: React.FC = () => {
             {/* Add Property Button */}
             <button
               onClick={handleAddProperty}
-              className="bg-[#2A3B49] text-white px-6 py-2 rounded-lg hover:bg-[#1e2a35] transition-colors flex items-center space-x-2"
+              className="bg-[#253747] text-white px-6 py-2 rounded-lg hover:bg-[#1a2a35] transition-colors flex items-center space-x-2"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
@@ -184,7 +184,7 @@ const AdminDashboard: React.FC = () => {
         {/* Loading State */}
         {loading && (
           <div className="flex justify-center items-center py-12">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#2A3B49]"></div>
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#253747]"></div>
           </div>
         )}
 
@@ -196,7 +196,7 @@ const AdminDashboard: React.FC = () => {
                 <svg className="mx-auto h-12 w-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
                 </svg>
-                <h3 className="mt-2 text-sm font-medium text-gray-900">No properties found</h3>
+                <h3 className="mt-2 text-sm font-light text-gray-900">No properties found</h3>
                 <p className="mt-1 text-sm text-gray-500">
                   {searchTerm || statusFilter !== 'all' 
                     ? 'Try adjusting your search or filter criteria.' 
@@ -207,7 +207,7 @@ const AdminDashboard: React.FC = () => {
                   <div className="mt-6">
                     <button
                       onClick={handleAddProperty}
-                      className="bg-[#2A3B49] text-white px-4 py-2 rounded-lg hover:bg-[#1e2a35] transition-colors"
+                      className="bg-[#253747] text-white px-4 py-2 rounded-lg hover:bg-[#1a2a35] transition-colors"
                     >
                       Add Property
                     </button>
@@ -234,7 +234,7 @@ const AdminDashboard: React.FC = () => {
                   <button
                     onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
                     disabled={currentPage === 1}
-                    className="px-3 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-md hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="px-3 py-2 text-sm font-light text-gray-500 bg-white border border-gray-300 rounded-md hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     Previous
                   </button>
@@ -243,9 +243,9 @@ const AdminDashboard: React.FC = () => {
                     <button
                       key={page}
                       onClick={() => setCurrentPage(page)}
-                      className={`px-3 py-2 text-sm font-medium rounded-md ${
+                      className={`px-3 py-2 text-sm font-light rounded-md ${
                         currentPage === page
-                          ? 'bg-[#2A3B49] text-white'
+                          ? 'bg-[#253747] text-white'
                           : 'text-gray-500 bg-white border border-gray-300 hover:bg-gray-50'
                       }`}
                     >
@@ -256,7 +256,7 @@ const AdminDashboard: React.FC = () => {
                   <button
                     onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
                     disabled={currentPage === totalPages}
-                    className="px-3 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-md hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="px-3 py-2 text-sm font-light text-gray-500 bg-white border border-gray-300 rounded-md hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     Next
                   </button>
