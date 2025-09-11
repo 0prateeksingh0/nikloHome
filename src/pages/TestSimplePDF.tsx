@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import SimpleFlipbook from '../components/SimpleFlipbook';
 import IFrameFlipbook from '../components/IFrameFlipbook';
+import ProperFlipbook from '../components/ProperFlipbook';
 
 const TestSimplePDF: React.FC = () => {
   const [testUrl, setTestUrl] = useState('https://res.cloudinary.com/demo/image/upload/v1234567890/sample.pdf');
@@ -82,6 +83,19 @@ const TestSimplePDF: React.FC = () => {
         <div className="bg-white rounded-lg shadow-lg p-6 mt-6">
           <h3 className="text-lg font-semibold mb-4">PDF.js Renderer (CDN Only)</h3>
           <SimpleFlipbook
+            pdfUrl={testUrl}
+            height="500px"
+            width="100%"
+            className="border rounded-lg"
+          />
+        </div>
+
+        <div className="bg-white rounded-lg shadow-lg p-6 mt-6">
+          <h3 className="text-lg font-semibold mb-4">Proper Flipbook (Build Folder)</h3>
+          <p className="text-gray-600 mb-4 text-sm">
+            This uses the exact same structure as the working examples from the flipbook folder.
+          </p>
+          <ProperFlipbook
             pdfUrl={testUrl}
             height="500px"
             width="100%"
