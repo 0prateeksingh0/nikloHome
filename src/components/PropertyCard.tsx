@@ -49,7 +49,12 @@ const PropertyCard: React.FC<PropertyCardProps> = ({ property }) => {
             <img 
               src={currentProperty.image} 
               alt={currentProperty.name}
-              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 image-optimized"
+              style={{
+                imageRendering: 'auto'
+              }}
+              loading="lazy"
+              decoding="async"
             />
           ) : (
             <div className="w-full h-full bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center">
@@ -72,7 +77,7 @@ const PropertyCard: React.FC<PropertyCardProps> = ({ property }) => {
           {/* Available Apartments Badge */}
           {currentProperty.availableApartments > 0 && (
             <div className="absolute top-4 left-4">
-              <span className="bg-primary text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg">
+              <span className="bg-[#2A3B49] text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg">
                 {currentProperty.availableApartments} Available
               </span>
             </div>
@@ -82,11 +87,11 @@ const PropertyCard: React.FC<PropertyCardProps> = ({ property }) => {
         {/* Content Section */}
         <div className="p-6">
           <div className="mb-4">
-            <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-2 group-hover:text-primary transition-colors duration-300">
+            <h3 className="text-xl md:text-2xl font-bold text-[#2A3B49] mb-2 group-hover:text-primary transition-colors duration-300">
               {currentProperty.name}
             </h3>
-            <div className="flex items-center text-gray-600 mb-3">
-              <svg className="w-4 h-4 mr-2 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="flex items-center text-[#2A3B49] mb-3">
+              <svg className="w-4 h-4 mr-2 text-[#2A3B49]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
               </svg>
@@ -97,7 +102,7 @@ const PropertyCard: React.FC<PropertyCardProps> = ({ property }) => {
           {/* Action Buttons */}
           <div className="flex flex-col sm:flex-row gap-3">
             <button 
-              className="flex-1 bg-orange-500 hover:bg-orange-600 text-white px-4 py-3 rounded-lg transition-all duration-200 shadow-md hover:shadow-lg transform hover:-translate-y-0.5 flex items-center justify-center"
+              className="flex-1 bg-[#2A3B49] hover:bg-[#1e2a35] text-white px-4 py-3 rounded-lg transition-all duration-200 shadow-md hover:shadow-lg transform hover:-translate-y-0.5 flex items-center justify-center"
               disabled
             >
               <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">

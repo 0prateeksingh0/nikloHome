@@ -1,12 +1,12 @@
 import React from 'react';
-import Header from './Header';
+import PublicHeader from './PublicHeader';
 import ContactForm from './ContactForm';
 
 const ContactPage: React.FC = () => {
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
       {/* Header */}
-      <Header variant="contact" />
+      <PublicHeader variant="contact" />
       
       {/* Main Content */}
       <main className="flex-1 pt-32 pb-16">

@@ -49,12 +49,12 @@ const ContactForm: React.FC<ContactFormProps> = ({ isModal = false, onClose }) =
   const formContent = (
     <div className="bg-white rounded-lg shadow-lg p-6 md:p-8 lg:p-10">
       <div className="text-center mb-8">
-        <div className="w-16 h-16 md:w-20 md:h-20 bg-orange-500 rounded-full flex items-center justify-center mx-auto mb-4">
+        <div className="w-16 h-16 md:w-20 md:h-20 bg-[#2A3B49] rounded-full flex items-center justify-center mx-auto mb-4">
           <svg className="w-8 h-8 md:w-10 md:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
           </svg>
         </div>
-        <h2 className="text-2xl md:text-3xl font-bold text-orange-600 mb-3">Get In Touch</h2>
+        <h2 className="text-2xl md:text-3xl font-bold text-[#2A3B49] mb-3">Get In Touch</h2>
         <p className="text-gray-600 text-sm md:text-base max-w-2xl mx-auto">
           Have questions about our properties? We'd love to hear from you. Send us a message and we'll respond as soon as possible.
         </p>
@@ -96,7 +96,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ isModal = false, onClose }) =
               value={formData.name}
               onChange={handleInputChange}
               required
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors"
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2A3B49] focus:border-[#2A3B49] transition-colors"
               placeholder="Enter your full name"
             />
           </div>
@@ -113,7 +113,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ isModal = false, onClose }) =
               value={formData.email}
               onChange={handleInputChange}
               required
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors"
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2A3B49] focus:border-[#2A3B49] transition-colors"
               placeholder="Enter your email address"
             />
           </div>
@@ -131,7 +131,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ isModal = false, onClose }) =
               name="phone"
               value={formData.phone}
               onChange={handleInputChange}
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors"
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2A3B49] focus:border-[#2A3B49] transition-colors"
               placeholder="Enter your phone number"
             />
           </div>
@@ -147,7 +147,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ isModal = false, onClose }) =
               value={formData.subject}
               onChange={handleInputChange}
               required
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors"
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2A3B49] focus:border-[#2A3B49] transition-colors"
             >
               <option value="">Select a subject</option>
               <option value="general">General Inquiry</option>
@@ -171,7 +171,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ isModal = false, onClose }) =
             onChange={handleInputChange}
             required
             rows={6}
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors resize-none"
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2A3B49] focus:border-[#2A3B49] transition-colors resize-none"
             placeholder="Tell us more about your inquiry..."
           />
         </div>
@@ -181,7 +181,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ isModal = false, onClose }) =
           <button
             type="submit"
             disabled={isSubmitting}
-            className="inline-flex items-center px-8 py-3 bg-orange-500 text-white font-medium rounded-lg hover:bg-orange-600 focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            className="inline-flex items-center px-8 py-3 bg-[#2A3B49] text-white font-medium rounded-lg hover:bg-[#1e2a35] focus:ring-2 focus:ring-[#2A3B49] focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
           >
             {isSubmitting ? (
               <>

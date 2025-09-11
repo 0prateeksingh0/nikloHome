@@ -5,7 +5,7 @@ const Footer: React.FC = () => {
   const { t } = useLanguage();
 
   return (
-    <footer className="bg-[#3e5362] text-white">
+    <footer className="bg-[#253747] text-white">
       {/* Main Footer Content */}
       <div className="container mx-auto px-4 py-8 md:py-12 lg:py-16">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
@@ -65,16 +65,13 @@ const Footer: React.FC = () => {
       {/* Bottom Navigation Bar */}
       <div className="border-t border-[#1a2a35]">
         <div className="container mx-auto px-4 py-3 md:py-4">
-          <div className="flex flex-col md:flex-row justify-between items-center space-y-3 md:space-y-0">
-            <div className="flex flex-wrap justify-center md:justify-start space-x-4 md:space-x-6 text-center">
-              <a href="#" className="text-[#af8c69] hover:text-white transition-colors text-sm md:text-base">{t('footer.home')}</a>
-              <a href="#" className="text-[#af8c69] hover:text-white transition-colors text-sm md:text-base">{t('footer.buildings')}</a>
-              <a href="#" className="text-[#af8c69] hover:text-white transition-colors text-sm md:text-base">{t('footer.about')}</a>
-              <a href="#" className="text-[#af8c69] hover:text-white transition-colors text-sm md:text-base">{t('footer.contact_link')}</a>
-              <a href="#" className="text-[#af8c69] hover:text-white transition-colors text-sm md:text-base">{t('footer.privacy')}</a>
-            </div>
-            <div className="text-white/80 text-xs md:text-sm text-center md:text-left">
-              {t('footer.copyright')}
+          <div className="flex justify-center">
+            <div className="flex flex-wrap justify-center space-x-4 md:space-x-6 text-center">
+              <a href="#" className="text-[#af8c69] hover:text-white transition-colors text-xs font-light">{t('footer.home')}</a>
+              <a href="#" className="text-[#af8c69] hover:text-white transition-colors text-xs font-light">{t('footer.buildings')}</a>
+              <a href="#" className="text-[#af8c69] hover:text-white transition-colors text-xs font-light">{t('footer.about')}</a>
+              <a href="#" className="text-[#af8c69] hover:text-white transition-colors text-xs font-light">{t('footer.contact_link')}</a>
+              <a href="#" className="text-[#af8c69] hover:text-white transition-colors text-xs font-light">{t('footer.privacy')}</a>
             </div>
           </div>
         </div>

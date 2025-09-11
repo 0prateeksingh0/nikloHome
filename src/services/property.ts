@@ -10,8 +10,15 @@ export const propertyService = {
     return response.data;
   },
 
-  async getProperties(): Promise<{ properties: Property[] }> {
-    const response = await api.get('/properties');
+  async getProperties(page: number = 1, limit: number = 10, search?: string, status?: string): Promise<{ properties: Property[]; totalPages: number; currentPage: number; totalCount: number }> {
+    const params = new URLSearchParams({
+      page: page.toString(),
+      limit: limit.toString(),
+      ...(search && { search }),
+      ...(status && status !== 'all' && { status })
+    });
+    
+    const response = await api.get(`/properties?${params}`);
     return response.data;
   },
 

@@ -93,7 +93,7 @@ const Features: React.FC = () => {
       <section id="properties-section" className="py-8 md:py-12 lg:py-20 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-8 md:mb-12 lg:mb-16">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-primary mb-4 md:mb-6">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#2A3B49] mb-4 md:mb-6">
               Our Properties
             </h2>
             <p className="text-gray-600 text-lg max-w-2xl mx-auto">

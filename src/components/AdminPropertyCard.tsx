@@ -18,10 +18,13 @@ const AdminPropertyCard: React.FC<AdminPropertyCardProps> = ({
   const [isDeleting, setIsDeleting] = useState(false);
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
   const [currentProperty, setCurrentProperty] = useState(property);
+  const [isUpdatingApartments, setIsUpdatingApartments] = useState(false);
+  const [apartmentsInput, setApartmentsInput] = useState(property.availableApartments.toString());
 
   // Update local state when property prop changes
   useEffect(() => {
     setCurrentProperty(property);
+    setApartmentsInput(property.availableApartments.toString());
   }, [property]);
 
   const openPdfModal = () => {
@@ -123,6 +126,43 @@ const AdminPropertyCard: React.FC<AdminPropertyCardProps> = ({
     }
   };
 
+  const handleApartmentsUpdate = async () => {
+    const newCount = parseInt(apartmentsInput);
+    
+    // Validate input
+    if (isNaN(newCount) || newCount < 0) {
+      alert('Please enter a valid number (0 or greater)');
+      setApartmentsInput(currentProperty.availableApartments.toString());
+      return;
+    }
+    
+    if (newCount === currentProperty.availableApartments) return;
+    
+    try {
+      setIsUpdatingApartments(true);
+      await propertyService.updateProperty(currentProperty.id, { availableApartments: newCount });
+      
+      // Update local state immediately for instant UI feedback
+      setCurrentProperty(prev => ({
+        ...prev,
+        availableApartments: newCount
+      }));
+      
+      // Also call the parent callback to refresh the list
+      onPropertyUpdated();
+      
+      // Notify other components that properties have been updated
+      localStorage.setItem('propertiesUpdated', Date.now().toString());
+      window.dispatchEvent(new CustomEvent('propertiesUpdated'));
+    } catch (error) {
+      console.error('Error updating available apartments:', error);
+      alert('Failed to update available apartments. Please try again.');
+      setApartmentsInput(currentProperty.availableApartments.toString());
+    } finally {
+      setIsUpdatingApartments(false);
+    }
+  };
+
   const handleDelete = async () => {
     try {
       setIsDeleting(true);
@@ -215,6 +255,40 @@ const AdminPropertyCard: React.FC<AdminPropertyCardProps> = ({
               </select>
               {isUpdating && (
                 <p className="text-blue-500 text-sm mt-1">Updating status...</p>
+              )}
+            </div>
+
+            {/* Available Apartments Update */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Available Apartments:</label>
+              <div className="flex space-x-2">
+                <input
+                  type="number"
+                  min="0"
+                  value={apartmentsInput}
+                  onChange={(e) => setApartmentsInput(e.target.value)}
+                  disabled={isUpdatingApartments}
+                  className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary disabled:opacity-50 disabled:cursor-not-allowed"
+                  placeholder="Enter number of apartments"
+                />
+                <button
+                  onClick={handleApartmentsUpdate}
+                  disabled={isUpdatingApartments || apartmentsInput === currentProperty.availableApartments.toString()}
+                  className="px-4 py-2 bg-primary hover:bg-primary-dark text-white rounded-lg transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center"
+                >
+                  {isUpdatingApartments ? (
+                    <svg className="w-4 h-4 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                    </svg>
+                  ) : (
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                  )}
+                </button>
+              </div>
+              {isUpdatingApartments && (
+                <p className="text-blue-500 text-sm mt-1">Updating apartments count...</p>
               )}
             </div>
 

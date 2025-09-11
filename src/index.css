@@ -3,9 +3,9 @@
 
 /* Define custom colors for Tailwind v4 */
 @theme {
-  --color-primary: #71C9CE;
-  --color-primary-light: #CBF1F5;
-  --color-primary-dark: #5BB5BA;
+  --color-primary: #2A3B49;
+  --color-primary-light: #4A5B69;
+  --color-primary-dark: #1e2a35;
   --color-success: #48BB78;
   --color-error: #F56565;
   --color-warning: #ED8936;
@@ -47,4 +47,31 @@ header {
 
 ::-webkit-scrollbar-thumb:hover {
   background-color: var(--color-primary-dark);
+}
+
+/* Image optimization styles */
+.image-optimized {
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  image-rendering: high-quality;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+/* Prevent image degradation on high-DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .image-optimized {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+}
+
+/* Smooth scaling for hover effects */
+.hover-scale {
+  transition: transform 0.3s ease-in-out;
+}
+
+.hover-scale:hover {
+  transform: scale(1.05);
 }

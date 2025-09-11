@@ -40,7 +40,12 @@ const Hero: React.FC = () => {
         <img 
           src={slides[currentSlide].image} 
           alt={`${slides[currentSlide].title} - ${slides[currentSlide].subtitle}`} 
-          className="w-full h-full object-cover object-center transition-opacity duration-1000"
+          className="w-full h-full object-cover object-center transition-opacity duration-1000 image-optimized"
+          style={{
+            imageRendering: 'auto'
+          }}
+          loading="eager"
+          decoding="async"
         />
         {/* Overlay */}
         <div className="absolute inset-0 bg-black/40"></div>

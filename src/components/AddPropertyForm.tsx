@@ -6,9 +6,12 @@ import type { CreatePropertyData } from '../types/property';
 interface AddPropertyFormProps {
   onSuccess: () => void;
   onCancel: () => void;
+  isOpen?: boolean;
+  onClose?: () => void;
+  onPropertyAdded?: () => void;
 }
 
-const AddPropertyForm: React.FC<AddPropertyFormProps> = ({ onSuccess, onCancel }) => {
+const AddPropertyForm: React.FC<AddPropertyFormProps> = ({ onSuccess, onCancel, isOpen, onClose, onPropertyAdded }) => {
   const [formData, setFormData] = useState<CreatePropertyData>({
     name: '',
     location: '',
@@ -72,6 +75,9 @@ const AddPropertyForm: React.FC<AddPropertyFormProps> = ({ onSuccess, onCancel }
     try {
       await propertyService.createProperty(formData);
       onSuccess();
+      if (onPropertyAdded) {
+        onPropertyAdded();
+      }
       
       // Notify other components that properties have been updated
       localStorage.setItem('propertiesUpdated', Date.now().toString());
@@ -83,7 +89,7 @@ const AddPropertyForm: React.FC<AddPropertyFormProps> = ({ onSuccess, onCancel }
     }
   };
 
-  return (
+  const formContent = (
     <div className="bg-white rounded-xl shadow-lg border border-gray-200">
       {/* Header */}
       <div className="px-6 py-4 border-b border-gray-200">
@@ -347,6 +353,20 @@ const AddPropertyForm: React.FC<AddPropertyFormProps> = ({ onSuccess, onCancel }
       </div>
     </div>
   );
+
+  // If used as modal
+  if (isOpen && onClose) {
+    return (
+      <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div className="max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+          {formContent}
+        </div>
+      </div>
+    );
+  }
+
+  // If used as regular component
+  return formContent;
 };
 
 export default AddPropertyForm;

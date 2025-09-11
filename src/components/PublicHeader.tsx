@@ -1,26 +1,17 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
-import { useAuth } from '../contexts/AuthContext';
 import { Link } from 'react-router-dom';
-import AuthModal from './AuthModal';
-import UserProfile from './UserProfile';
-import AdminDashboard from './AdminDashboard';
 
-interface HeaderProps {
+interface PublicHeaderProps {
   variant?: 'default' | 'contact';
 }
 
-const Header: React.FC<HeaderProps> = ({ variant = 'default' }) => {
+const PublicHeader: React.FC<PublicHeaderProps> = ({ variant = 'default' }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLanguageDropdownOpen, setIsLanguageDropdownOpen] = useState(false);
-  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
-  const [isProfileModalOpen, setIsProfileModalOpen] = useState(false);
-  const [isAdminModalOpen, setIsAdminModalOpen] = useState(false);
   const { language, setLanguage, t } = useLanguage();
-  const { user, logout, isAuthenticated } = useAuth();
   const languageDropdownRef = useRef<HTMLDivElement>(null);
-
 
   useEffect(() => {
     const handleScroll = () => {
@@ -50,15 +41,14 @@ const Header: React.FC<HeaderProps> = ({ variant = 'default' }) => {
 
   const currentLanguage = languages.find(lang => lang.code === language);
 
-
   // Determine styling based on variant
   const isContactPage = variant === 'contact';
   const headerBg = isContactPage ? 'bg-[#f5f5f0] shadow-lg' : (isScrolled ? 'bg-[#f5f5f0] shadow-lg' : 'bg-transparent');
   const textColor = isContactPage ? 'text-black' : (isScrolled ? 'text-gray-800' : 'text-white');
   const separatorColor = isContactPage ? 'bg-gray-300' : (isScrolled ? 'bg-gray-300' : 'bg-white/30');
   const borderColor = isContactPage ? 'border-gray-200' : (isScrolled ? 'border-gray-200' : 'border-white/20');
-  const navLinkColor = isContactPage ? 'text-black hover:text-orange-500' : (isScrolled ? 'text-gray-800 hover:text-orange-500' : 'text-white hover:text-orange-400');
-  const rightSideColor = isContactPage ? 'text-black hover:text-orange-500' : (isScrolled ? 'text-gray-700 hover:text-orange-500' : 'text-white hover:text-orange-400');
+  const navLinkColor = isContactPage ? 'text-black hover:text-[#2A3B49]' : (isScrolled ? 'text-gray-800 hover:text-[#2A3B49]' : 'text-white hover:text-[#2A3B49]');
+  const rightSideColor = isContactPage ? 'text-black hover:text-[#2A3B49]' : (isScrolled ? 'text-gray-700 hover:text-[#2A3B49]' : 'text-white hover:text-[#2A3B49]');
   const mobileMenuBg = isContactPage ? 'bg-white text-gray-800' : (isScrolled ? 'bg-white text-gray-800' : 'bg-black/90 text-white');
   const mobileMenuBorder = isContactPage ? 'border-gray-200' : (isScrolled ? 'border-gray-200' : 'border-white/20');
 
@@ -84,9 +74,9 @@ const Header: React.FC<HeaderProps> = ({ variant = 'default' }) => {
                 <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 .12-.03.24-.06.36l-2.2 2.2z" />
               </svg>
               <span>
-                <a href="tel:02842145566" className="hover:text-orange-400 transition-colors">0284 214 55 66</a>
+                <a href="tel:02842145566" className="hover:text-[#2A3B49] transition-colors">0284 214 55 66</a>
                 <span className="mx-2">|</span>
-                <a href="tel:05327086515" className="hover:text-orange-400 transition-colors">0532 708 65 15</a>
+                <a href="tel:05327086515" className="hover:text-[#2A3B49] transition-colors">0532 708 65 15</a>
               </span>
             </div>
             
@@ -98,65 +88,8 @@ const Header: React.FC<HeaderProps> = ({ variant = 'default' }) => {
               <Link to="/contact" className={`text-sm md:text-base font-medium transition-all duration-300 ${navLinkColor}`}>{t('nav.contact')}</Link>
             </div>
 
-            {/* Right Side - Auth, Language, Search */}
+            {/* Right Side - Language, Search */}
             <div className="flex items-center space-x-2 md:space-x-4">
-              {isAuthenticated ? (
-                <div className="hidden md:flex items-center space-x-4">
-                  <span className={`text-xs md:text-sm font-medium transition-all duration-300 ${
-                    isScrolled ? 'text-orange-600' : 'text-white'
-                  }`}>
-                    Welcome, {user?.name}
-                  </span>
-                  <button 
-                    onClick={() => setIsProfileModalOpen(true)}
-                    className={`relative group text-xs md:text-sm font-medium transition-all duration-300 ${
-                      isScrolled ? 'text-orange-600 hover:text-orange-700' : 'text-white hover:text-orange-400'
-                    }`}
-                  >
-                    Profile
-                    <span className={`absolute left-0 bottom-0 w-full h-0.5 transition-all duration-300 ${
-                      isScrolled ? 'bg-orange-600 group-hover:w-full' : 'bg-orange-400 group-hover:w-full'
-                    }`}></span>
-                  </button>
-                  {user?.role === 'admin' && (
-                    <button 
-                      onClick={() => setIsAdminModalOpen(true)}
-                      className={`relative group text-xs md:text-sm font-medium transition-all duration-300 ${
-                        isScrolled ? 'text-orange-700 hover:text-orange-600' : 'text-white hover:text-orange-400'
-                      }`}
-                    >
-                      Admin
-                      <span className={`absolute left-0 bottom-0 w-full h-0.5 transition-all duration-300 ${
-                        isScrolled ? 'bg-orange-700 group-hover:w-full' : 'bg-orange-400 group-hover:w-full'
-                      }`}></span>
-                    </button>
-                  )}
-                  <button 
-                    onClick={logout}
-                    className={`relative group text-xs md:text-sm font-medium transition-all duration-300 ${
-                      isScrolled ? 'text-red-600 hover:text-red-800' : 'text-red-300 hover:text-red-100'
-                    }`}
-                  >
-                    Logout
-                    <span className={`absolute left-0 bottom-0 w-full h-0.5 transition-all duration-300 ${
-                      isScrolled ? 'bg-red-600 group-hover:w-full' : 'bg-red-300 group-hover:w-full'
-                    }`}></span>
-                  </button>
-                </div>
-              ) : (
-                <button 
-                  onClick={() => setIsAuthModalOpen(true)}
-                  className={`hidden md:block relative group text-xs md:text-sm transition-all duration-300 ${rightSideColor}`}
-                >
-                  {t('nav.register')}
-                  <span className={`absolute left-0 bottom-0 w-full h-0.5 transition-all duration-300 ${
-                    isScrolled ? 'bg-orange-500 group-hover:w-full' : 'bg-orange-400 group-hover:w-full'
-                  }`}></span>
-                </button>
-              )}
-              <span className={`hidden md:block h-4 w-px transition-all duration-300 ${
-                isScrolled ? 'bg-gray-300' : 'bg-white/30'
-              }`}></span>
               
               {/* Desktop Language Selector */}
               <div className="hidden md:block relative" ref={languageDropdownRef}>
@@ -182,7 +115,7 @@ const Header: React.FC<HeaderProps> = ({ variant = 'default' }) => {
                           setIsLanguageDropdownOpen(false);
                         }}
                         className={`w-full flex items-center space-x-2 md:space-x-3 px-3 md:px-4 py-2 text-left hover:bg-gray-100 transition-colors ${
-                          language === lang.code ? 'bg-gray-50 text-orange-600' : 'text-gray-800'
+                          language === lang.code ? 'bg-gray-50 text-[#2A3B49]' : 'text-gray-800'
                         }`}
                       >
                         <span className="text-base md:text-lg">{lang.flag}</span>
@@ -223,9 +156,9 @@ const Header: React.FC<HeaderProps> = ({ variant = 'default' }) => {
                   <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 .12-.03.24-.06.36l-2.2 2.2z" />
                 </svg>
                 <span className="text-sm">
-                  <a href="tel:02842145566" className="hover:text-orange-400 transition-colors">0284 214 55 66</a>
+                  <a href="tel:02842145566" className="hover:text-[#2A3B49] transition-colors">0284 214 55 66</a>
                   <span className="mx-2">|</span>
-                  <a href="tel:05327086515" className="hover:text-orange-400 transition-colors">0532 708 65 15</a>
+                  <a href="tel:05327086515" className="hover:text-[#2A3B49] transition-colors">0532 708 65 15</a>
                 </span>
               </div>
               
@@ -256,7 +189,7 @@ const Header: React.FC<HeaderProps> = ({ variant = 'default' }) => {
                       }}
                       className={`flex items-center justify-center space-x-2 px-3 py-2 rounded-md text-sm transition-colors ${
                         language === lang.code 
-                          ? 'bg-orange-500 text-white' 
+                          ? 'bg-[#2A3B49] text-white' 
                           : 'bg-gray-100 text-gray-800 hover:bg-gray-200'
                       }`}
                     >
@@ -267,76 +200,12 @@ const Header: React.FC<HeaderProps> = ({ variant = 'default' }) => {
                 </div>
               </div>
               
-              {/* Mobile Auth Button */}
-              <div className="pt-3 border-t border-gray-200">
-                {isAuthenticated ? (
-                  <div className="space-y-2">
-                    <div className="px-4 py-2 text-sm font-medium text-orange-600">
-                      Welcome, {user?.name}
-                    </div>
-                    <button 
-                      onClick={() => {
-                        setIsProfileModalOpen(true);
-                        setIsMenuOpen(false);
-                      }}
-                      className="block w-full px-4 py-3 text-base font-medium bg-orange-500 text-white rounded-md hover:bg-orange-600 transition-colors text-center"
-                    >
-                      Profile
-                    </button>
-                    {user?.role === 'admin' && (
-                      <button 
-                        onClick={() => {
-                          setIsAdminModalOpen(true);
-                          setIsMenuOpen(false);
-                        }}
-                        className="block w-full px-4 py-3 text-base font-medium bg-orange-600 text-white rounded-md hover:bg-orange-700 transition-colors text-center"
-                      >
-                        Admin Dashboard
-                      </button>
-                    )}
-                    <button 
-                      onClick={logout}
-                      className="w-full px-4 py-3 text-base font-medium bg-red-500 text-white rounded-md hover:bg-red-600 transition-colors"
-                    >
-                      Logout
-                    </button>
-                  </div>
-                ) : (
-                  <button 
-                    onClick={() => {
-                      setIsAuthModalOpen(true);
-                      setIsMenuOpen(false);
-                    }}
-                    className="w-full px-4 py-3 text-base font-medium bg-orange-500 text-white rounded-md hover:bg-orange-600 transition-colors"
-                  >
-                    {t('nav.register')}
-                  </button>
-                )}
-              </div>
             </div>
           )}
         </div>
       </div>
-      
-      {/* Auth Modal */}
-      <AuthModal 
-        isOpen={isAuthModalOpen} 
-        onClose={() => setIsAuthModalOpen(false)} 
-      />
-      
-      {/* Profile Modal */}
-      <UserProfile 
-        isOpen={isProfileModalOpen} 
-        onClose={() => setIsProfileModalOpen(false)} 
-      />
-      
-      {/* Admin Dashboard Modal */}
-      <AdminDashboard 
-        isOpen={isAdminModalOpen} 
-        onClose={() => setIsAdminModalOpen(false)} 
-      />
     </header>
   );
 };
 
-export default Header;
+export default PublicHeader;
