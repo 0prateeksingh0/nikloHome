@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import SimpleFlipbook from '../components/SimpleFlipbook';
+import IFrameFlipbook from '../components/IFrameFlipbook';
 
 const TestSimplePDF: React.FC = () => {
   const [testUrl, setTestUrl] = useState('https://res.cloudinary.com/demo/image/upload/v1234567890/sample.pdf');
@@ -81,6 +82,19 @@ const TestSimplePDF: React.FC = () => {
         <div className="bg-white rounded-lg shadow-lg p-6 mt-6">
           <h3 className="text-lg font-semibold mb-4">PDF.js Renderer (CDN Only)</h3>
           <SimpleFlipbook
+            pdfUrl={testUrl}
+            height="500px"
+            width="100%"
+            className="border rounded-lg"
+          />
+        </div>
+
+        <div className="bg-white rounded-lg shadow-lg p-6 mt-6">
+          <h3 className="text-lg font-semibold mb-4">IFrame PDF Viewer (CSP Safe)</h3>
+          <p className="text-gray-600 mb-4 text-sm">
+            This approach doesn't use PDF.js, so it won't trigger CSP errors.
+          </p>
+          <IFrameFlipbook
             pdfUrl={testUrl}
             height="500px"
             width="100%"

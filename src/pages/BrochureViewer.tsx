@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import FlipbookViewer from '../components/FlipbookViewer';
+import GuaranteedPDFViewer from '../components/GuaranteedPDFViewer';
 import { propertyService } from '../services/property';
 import type { Property } from '../types/property';
 
@@ -76,6 +77,29 @@ const BrochureViewer: React.FC = () => {
     fetchProperty();
   }, [id]);
 
+  // Fallback mechanism for PDF viewer
+  useEffect(() => {
+    const checkFlipbookError = () => {
+      // Check if flipbook failed to load after 5 seconds
+      setTimeout(() => {
+        const flipbookContainer = document.querySelector('.flipbook-container');
+        const fallback = document.getElementById('pdf-fallback');
+        
+        if (flipbookContainer && fallback) {
+          // If flipbook container is empty or has error, show fallback
+          if (flipbookContainer.children.length === 0 || 
+              flipbookContainer.textContent?.includes('error') ||
+              flipbookContainer.textContent?.includes('Error')) {
+            console.log('Flipbook failed, showing fallback PDF viewer');
+            fallback.style.display = 'block';
+          }
+        }
+      }, 5000);
+    };
+
+    checkFlipbookError();
+  }, [property]);
+
   const handleClose = () => {
     navigate(-1); // Go back to previous page
   };
@@ -134,17 +158,29 @@ const BrochureViewer: React.FC = () => {
         </div>
       </div>
 
-      {/* Flipbook Container */}
+      {/* PDF Container */}
       <div className="p-4">
         <div className="max-w-7xl mx-auto">
-          <FlipbookViewer
-            pdfUrl={property.brochureUrl!}
-            lightBox={false}
-            viewMode="3d"
-            height="calc(100vh - 120px)"
-            width="100%"
-            className="rounded-lg shadow-2xl bg-white"
-          />
+          {/* Try flipbook first, fallback to guaranteed viewer */}
+          <div className="relative">
+            <FlipbookViewer
+              pdfUrl={property.brochureUrl!}
+              lightBox={false}
+              viewMode="3d"
+              height="calc(100vh - 120px)"
+              width="100%"
+              className="rounded-lg shadow-2xl bg-white"
+            />
+            {/* Fallback overlay that shows if flipbook fails */}
+            <div className="absolute inset-0 bg-white rounded-lg shadow-2xl" style={{ display: 'none' }} id="pdf-fallback">
+              <GuaranteedPDFViewer
+                pdfUrl={property.brochureUrl!}
+                height="calc(100vh - 120px)"
+                width="100%"
+                className="rounded-lg"
+              />
+            </div>
+          </div>
         </div>
       </div>
     </div>
