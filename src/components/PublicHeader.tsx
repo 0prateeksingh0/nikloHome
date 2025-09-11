@@ -86,6 +86,7 @@ const PublicHeader: React.FC<PublicHeaderProps> = ({ variant = 'default' }) => {
               <a href="#" className={`text-sm md:text-base font-light transition-all duration-300 ${navLinkColor}`}>{t('nav.stories')}</a>
               <a href="#" className={`text-sm md:text-base font-light transition-all duration-300 ${navLinkColor}`}>{t('nav.about')}</a>
               <Link to="/contact" className={`text-sm md:text-base font-light transition-all duration-300 ${navLinkColor}`}>{t('nav.contact')}</Link>
+              <Link to="/test-cloudinary" className={`text-sm md:text-base font-light transition-all duration-300 ${navLinkColor}`}>Test Brochure</Link>
             </div>
 
             {/* Right Side - Language, Search */}

@@ -9,6 +9,7 @@ import ContactPage from './components/ContactPage';
 import BrochureViewer from './pages/BrochureViewer';
 import FlipbookTest from './pages/FlipbookTest';
 import TestBrochure from './pages/TestBrochure';
+import TestCloudinaryBrochure from './pages/TestCloudinaryBrochure';
 import AdminLogin from './pages/AdminLogin';
 import AdminDashboard from './pages/AdminDashboard';
 import { LanguageProvider } from './contexts/LanguageContext';
@@ -38,6 +39,7 @@ function App() {
                   <Route path="/villa/:slug" element={<VillaPage />} />
                   <Route path="/flipbook-test" element={<FlipbookTest />} />
                   <Route path="/test-brochure" element={<TestBrochure />} />
+                  <Route path="/test-cloudinary" element={<TestCloudinaryBrochure />} />
                   <Route path="/contact" element={<ContactPage />} />
                 </Routes>
                 <Footer />

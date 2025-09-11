@@ -99,7 +99,7 @@ const FlipbookViewer: React.FC<FlipbookViewerProps> = ({
           preloader: '/flipbook/assets/images/preloader.jpg',
           flipMp3: '/flipbook/assets/mp3/turnPage.mp3',
           spinner: '/flipbook/assets/images/spinner.gif',
-          backgroundMp3: '/flipbook/assets/mp3/background.mp3',
+          backgroundMp3: '/flipbook/assets/mp3/turnPage.mp3', // Use turnPage.mp3 as background
         }
       };
 
