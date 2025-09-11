@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "tsc -b && vite build && npm run copy-flipbook-assets",
+    "copy-flipbook-assets": "cp -r public/flipbook dist/",
     "lint": "eslint .",
     "preview": "vite preview"
   },

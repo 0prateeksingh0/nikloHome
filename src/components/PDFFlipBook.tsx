@@ -44,7 +44,11 @@ const PDFFlipBook: React.FC<PDFFlipBookProps> = ({
       setPageImages(images);
     } catch (error) {
       console.error('PDF.js method failed:', error);
-      setError('Failed to load PDF pages. Please try again.');
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
+      setError(`Failed to load PDF pages: ${errorMessage}`);
+      
+      // Set empty array to prevent flipbook initialization issues
+      setPageImages([]);
     } finally {
       setLoading(false);
     }

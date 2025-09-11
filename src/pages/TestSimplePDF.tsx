@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import SimpleFlipbook from '../components/SimpleFlipbook';
 import IFrameFlipbook from '../components/IFrameFlipbook';
 import ProperFlipbook from '../components/ProperFlipbook';
+import ProductionFlipbook from '../components/ProductionFlipbook';
 
 const TestSimplePDF: React.FC = () => {
-  const [testUrl, setTestUrl] = useState('https://res.cloudinary.com/demo/image/upload/v1234567890/sample.pdf');
+  const [testUrl, setTestUrl] = useState('/pdf/property1.pdf');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -40,6 +41,14 @@ const TestSimplePDF: React.FC = () => {
           <p className="text-gray-600 mb-4">
             This tests if we can load a PDF directly without any flipbook components.
           </p>
+          <div className="mb-4 p-3 bg-blue-50 rounded-lg">
+            <p className="text-sm text-blue-800">
+              <strong>Current PDF:</strong> {testUrl}
+            </p>
+            <p className="text-xs text-blue-600 mt-1">
+              Using local PDF to avoid CORS issues. Check browser console for detailed logs.
+            </p>
+          </div>
           
           <div className="mb-4">
             <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -96,6 +105,19 @@ const TestSimplePDF: React.FC = () => {
             This uses the exact same structure as the working examples from the flipbook folder.
           </p>
           <ProperFlipbook
+            pdfUrl={testUrl}
+            height="500px"
+            width="100%"
+            className="border rounded-lg"
+          />
+        </div>
+
+        <div className="bg-white rounded-lg shadow-lg p-6 mt-6">
+          <h3 className="text-lg font-semibold mb-4">Production-Safe Flipbook</h3>
+          <p className="text-gray-600 mb-4 text-sm">
+            This component is specifically designed for production deployment with better error handling and asset loading.
+          </p>
+          <ProductionFlipbook
             pdfUrl={testUrl}
             height="500px"
             width="100%"

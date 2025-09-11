@@ -36,6 +36,14 @@ const configurePDFWorker = () => {
 // Configure worker
 configurePDFWorker();
 
+// Add global error handler for unhandled promise rejections
+if (typeof window !== 'undefined') {
+  window.addEventListener('unhandledrejection', (event) => {
+    console.error('Unhandled promise rejection in PDF service:', event.reason);
+    // Don't prevent default to allow other error handlers to work
+  });
+}
+
 export interface PDFPageImage {
   pageNumber: number;
   imageUrl: string;
@@ -66,6 +74,14 @@ export class PDFToImagesService {
         }
       });
       
+      // Add progress tracking
+      loadingTask.onProgress = (progress) => {
+        if (progress.total > 0) {
+          const percent = Math.round((progress.loaded / progress.total) * 100);
+          console.log(`PDF loading progress: ${percent}%`);
+        }
+      };
+      
       const pdf = await loadingTask.promise;
       const totalPages = pdf.numPages;
       const actualPageCount = Math.min(totalPages, maxPages);
@@ -88,7 +104,18 @@ export class PDFToImagesService {
           console.log(`Page ${pageNum} processed successfully`);
         } catch (pageError) {
           console.error(`Error processing page ${pageNum}:`, pageError);
-          // Continue with other pages even if one fails
+          // Add a placeholder for failed pages to maintain page order
+          pageImages.push({
+            pageNumber: pageNum,
+            imageUrl: `data:image/svg+xml;base64,${btoa(`
+              <svg width="400" height="600" xmlns="http://www.w3.org/2000/svg">
+                <rect width="100%" height="100%" fill="#f3f4f6"/>
+                <text x="50%" y="50%" text-anchor="middle" fill="#6b7280" font-family="Arial" font-size="16">
+                  Page ${pageNum} - Error Loading
+                </text>
+              </svg>
+            `)}`
+          });
         }
       }
       
@@ -134,14 +161,22 @@ export class PDFToImagesService {
           viewport: viewport
         };
 
-        page.render(renderContext).promise.then(() => {
-          // Convert canvas to data URL
-          const imageUrl = canvas.toDataURL('image/png', 0.9);
-          resolve(imageUrl);
-        }).catch((renderError: any) => {
-          console.error(`Error rendering page ${pageNumber}:`, renderError);
-          reject(renderError);
-        });
+        page.render(renderContext).promise
+          .then(() => {
+            try {
+              // Convert canvas to data URL
+              const imageUrl = canvas.toDataURL('image/png', 0.9);
+              console.log(`Page ${pageNumber} rendered successfully`);
+              resolve(imageUrl);
+            } catch (conversionError) {
+              console.error(`Error converting page ${pageNumber} to image:`, conversionError);
+              reject(conversionError);
+            }
+          })
+          .catch((renderError: any) => {
+            console.error(`Error rendering page ${pageNumber}:`, renderError);
+            reject(renderError);
+          });
       } catch (error) {
         reject(error);
       }

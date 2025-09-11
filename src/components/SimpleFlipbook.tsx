@@ -38,13 +38,20 @@ const SimpleFlipbook: React.FC<SimpleFlipbookProps> = ({
 
     const loadPDF = async () => {
       try {
+        console.log('🔄 Loading PDF.js...');
         const pdfjsLib = await loadPDFJS() as any;
-        console.log('PDF.js loaded successfully');
+        console.log('✅ PDF.js loaded successfully');
         
+        console.log('🔄 Loading PDF from:', pdfUrl);
         // Load PDF
-        const loadingTask = pdfjsLib.getDocument(pdfUrl);
+        const loadingTask = pdfjsLib.getDocument({
+          url: pdfUrl,
+          cMapUrl: 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/cmaps/',
+          cMapPacked: true,
+        });
+        
         const pdf = await loadingTask.promise;
-        console.log('PDF loaded:', pdf.numPages, 'pages');
+        console.log('✅ PDF loaded:', pdf.numPages, 'pages');
         
         // Render first page
         const page = await pdf.getPage(1);
@@ -63,20 +70,23 @@ const SimpleFlipbook: React.FC<SimpleFlipbookProps> = ({
           };
           
           await page.render(renderContext).promise;
-          console.log('Page rendered successfully');
+          console.log('✅ Page rendered successfully');
           
           if (containerRef.current) {
             containerRef.current.innerHTML = '';
             containerRef.current.appendChild(canvas);
           }
+        } else {
+          throw new Error('Could not get canvas context');
         }
       } catch (error) {
-        console.error('Error loading PDF:', error);
+        console.error('❌ Error loading PDF:', error);
         if (containerRef.current) {
           containerRef.current.innerHTML = `
             <div class="p-4 bg-red-50 text-red-800 rounded-lg">
               <h3 class="font-semibold">Error loading PDF</h3>
               <p class="text-sm">${error}</p>
+              <p class="text-xs mt-2">URL: ${pdfUrl}</p>
             </div>
           `;
         }
