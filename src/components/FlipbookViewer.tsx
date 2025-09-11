@@ -95,6 +95,10 @@ const FlipbookViewer: React.FC<FlipbookViewerProps> = ({
         tableOfContentCloseOnClick: true,
         thumbsCloseOnClick: true,
         thumbsStyle: 'overlay',
+        pdfjsworkerSrc: '/flipbook/js/libs/pdf.worker.min.js', // Configure PDF.js worker
+        pdfjsSrc: '/flipbook/js/libs/pdf.min.js', // Ensure PDF.js is loaded from local
+        disableRange: false, // Enable range requests for better PDF loading
+        disableStream: false, // Enable streaming for better performance
         assets: {
           preloader: '/flipbook/assets/images/preloader.jpg',
           flipMp3: '/flipbook/assets/mp3/turnPage.mp3',

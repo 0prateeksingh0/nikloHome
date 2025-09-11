@@ -10,6 +10,7 @@ import BrochureViewer from './pages/BrochureViewer';
 import FlipbookTest from './pages/FlipbookTest';
 import TestBrochure from './pages/TestBrochure';
 import TestCloudinaryBrochure from './pages/TestCloudinaryBrochure';
+import TestVercelAssets from './pages/TestVercelAssets';
 import AdminLogin from './pages/AdminLogin';
 import AdminDashboard from './pages/AdminDashboard';
 import { LanguageProvider } from './contexts/LanguageContext';
@@ -40,6 +41,7 @@ function App() {
                   <Route path="/flipbook-test" element={<FlipbookTest />} />
                   <Route path="/test-brochure" element={<TestBrochure />} />
                   <Route path="/test-cloudinary" element={<TestCloudinaryBrochure />} />
+                  <Route path="/test-vercel" element={<TestVercelAssets />} />
                   <Route path="/contact" element={<ContactPage />} />
                 </Routes>
                 <Footer />

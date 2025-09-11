@@ -1,8 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import FlipbookViewer from '../components/FlipbookViewer';
+import PDFWorkerDiagnostic from '../components/PDFWorkerDiagnostic';
+import { testPDFWorker, testFlipbookAssets } from '../utils/testWorker';
 
 const TestCloudinaryBrochure: React.FC = () => {
   const [testUrl, setTestUrl] = useState('https://res.cloudinary.com/demo/image/upload/v1234567890/sample.pdf');
+
+  useEffect(() => {
+    // Test assets when component mounts
+    testFlipbookAssets();
+    testPDFWorker();
+  }, []);
 
   return (
     <div className="min-h-screen bg-gray-100 p-8">
@@ -11,6 +19,11 @@ const TestCloudinaryBrochure: React.FC = () => {
           Test Cloudinary Brochure Integration
         </h1>
         
+        <div className="bg-white rounded-lg shadow-lg p-6 mb-6">
+          <h2 className="text-xl font-semibold mb-4">PDF.js Worker Diagnostics</h2>
+          <PDFWorkerDiagnostic />
+        </div>
+
         <div className="bg-white rounded-lg shadow-lg p-6 mb-6">
           <h2 className="text-xl font-semibold mb-4">Test with Cloudinary PDF URL</h2>
           <p className="text-gray-600 mb-4">
