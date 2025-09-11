@@ -5,63 +5,32 @@
 
 import * as pdfjsLib from 'pdfjs-dist';
 
-// Configure PDF.js worker with multiple fallbacks for 100% reliability
+// Configure PDF.js worker with CDN fallback for Vercel compatibility
 const configurePDFWorker = () => {
-  const localWorkerSrc = '/flipbook/js/libs/pdf.worker.min.js';
+  // Use CDN worker directly for Vercel deployment
   const cdnWorkerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsLib.version}/pdf.worker.min.js`;
   const jsdelivrWorkerSrc = `//cdn.jsdelivr.net/npm/pdfjs-dist@${pdfjsLib.version}/build/pdf.worker.min.js`;
   
-  // Set initial worker source
-  pdfjsLib.GlobalWorkerOptions.workerSrc = localWorkerSrc;
+  // Set CDN worker as primary (more reliable on Vercel)
+  pdfjsLib.GlobalWorkerOptions.workerSrc = cdnWorkerSrc;
   
-  // Test local worker with timeout
-  const testLocalWorker = () => {
-    return new Promise((resolve) => {
-      const timeout = setTimeout(() => {
-        console.warn('Local worker test timeout, using CDN fallback');
-        resolve(false);
-      }, 2000);
-      
-      fetch(localWorkerSrc, { method: 'HEAD' })
-        .then(response => {
-          clearTimeout(timeout);
-          if (response.ok) {
-            console.log('✅ PDF.js worker loaded from local file');
-            resolve(true);
-          } else {
-            console.warn('❌ Local worker not accessible:', response.status);
-            resolve(false);
-          }
-        })
-        .catch(error => {
-          clearTimeout(timeout);
-          console.warn('❌ Local worker test failed:', error);
-          resolve(false);
-        });
+  console.log('🔧 PDF.js worker configured for Vercel deployment');
+  console.log('📡 Using CDN worker:', cdnWorkerSrc);
+  
+  // Test CDN worker and fallback if needed
+  fetch(cdnWorkerSrc, { method: 'HEAD' })
+    .then(response => {
+      if (!response.ok) {
+        console.warn('CDN worker failed, trying jsdelivr...');
+        pdfjsLib.GlobalWorkerOptions.workerSrc = jsdelivrWorkerSrc;
+        console.log('✅ PDF.js worker loaded from jsdelivr fallback');
+      } else {
+        console.log('✅ PDF.js worker loaded from CDN');
+      }
+    })
+    .catch(() => {
+      console.log('✅ PDF.js worker loaded from jsdelivr fallback');
     });
-  };
-  
-  // Test and fallback if needed
-  testLocalWorker().then(localWorks => {
-    if (!localWorks) {
-      console.log('🔄 Falling back to CDN worker...');
-      pdfjsLib.GlobalWorkerOptions.workerSrc = cdnWorkerSrc;
-      
-      // Test CDN worker too
-      fetch(cdnWorkerSrc, { method: 'HEAD' })
-        .then(response => {
-          if (!response.ok) {
-            console.warn('CDN worker failed, trying jsdelivr...');
-            pdfjsLib.GlobalWorkerOptions.workerSrc = jsdelivrWorkerSrc;
-          } else {
-            console.log('✅ PDF.js worker loaded from CDN');
-          }
-        })
-        .catch(() => {
-          console.log('✅ PDF.js worker loaded from jsdelivr fallback');
-        });
-    }
-  });
 };
 
 // Configure worker

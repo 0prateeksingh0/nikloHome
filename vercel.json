@@ -2,7 +2,16 @@
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
   "public": true,
+  "functions": {
+    "app/api/**/*.js": {
+      "runtime": "nodejs18.x"
+    }
+  },
   "rewrites": [
+    {
+      "source": "/flipbook/(.*)",
+      "destination": "/flipbook/$1"
+    },
     {
       "source": "/(.*)",
       "destination": "/index.html"
@@ -23,6 +32,10 @@
         {
           "key": "Access-Control-Allow-Methods",
           "value": "GET, HEAD, OPTIONS"
+        },
+        {
+          "key": "Access-Control-Allow-Headers",
+          "value": "Content-Type"
         }
       ]
     },

@@ -95,8 +95,8 @@ const FlipbookViewer: React.FC<FlipbookViewerProps> = ({
         tableOfContentCloseOnClick: true,
         thumbsCloseOnClick: true,
         thumbsStyle: 'overlay',
-        pdfjsworkerSrc: '/flipbook/js/libs/pdf.worker.min.js', // Configure PDF.js worker
-        pdfjsSrc: '/flipbook/js/libs/pdf.min.js', // Ensure PDF.js is loaded from local
+        pdfjsworkerSrc: `//cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js`, // Use CDN worker for Vercel
+        pdfjsSrc: `//cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js`, // Use CDN PDF.js for Vercel
         disableRange: false, // Enable range requests for better PDF loading
         disableStream: false, // Enable streaming for better performance
         assets: {
